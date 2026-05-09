@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "index.qmd"
+    - "analysis.qmd"
+    - "data.qmd"
+    - "team.qmd"
   resources:
     - "data/HNS_2022_clean.RData"
     - "data/HNS_2022_clean.csv"

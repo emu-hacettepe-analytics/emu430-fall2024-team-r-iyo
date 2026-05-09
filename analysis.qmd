@@ -210,7 +210,7 @@ ggplot(company_totals, aes(x = total_mt)) +
 
 The pattern is hard to miss. Most companies cluster in the **10³–10⁴ ton** range, but a thin upper tail stretches well past **10⁷ tons** and that tail is where the real volume lives. On a linear axis, the smaller handlers would barely register; they outnumber the giants but are dwarfed by them in every other sense.
 
-## 4. What would a tonnage levy actually cost? ( Hypothetical simulation)
+## 4. Simulated Tax Impact Based on Hazardous Cargo Handling Amounts
 
 The Directorate is weighing tax and regulatory measures for companies that move more than **20,000 tons** of hazardous cargo in a given year. To get a sense of the scale, we run a simple simulation: a hypothetical **₺50 per ton** levy applied to the full tonnage of any company that crosses that line.
 
@@ -375,7 +375,7 @@ ggplot(sens, aes(x = threshold)) +
   theme_riyo()
 ```
 
-The take away because the upper tail is so heavy, moving the threshold up by an order of magnitude barely reduces tonnage coverage but it sharply reduces the number of companies subject to the policy. That's a useful lever for designers who want a high impact, low friction policy.
+Because the upper tail of the distribution is very large, increasing the threshold significantly reduces the number of companies affected by the policy, while the total amount of covered cargo decreases only slightly. This may help policymakers design a regulation that targets major cargo handlers without affecting too many companies.
 
 ## 5. Where do these companies handle their cargo?
 
