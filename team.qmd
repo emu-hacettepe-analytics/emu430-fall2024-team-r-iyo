@@ -19,9 +19,7 @@ We took our name from Manifest's *"Arıyo"*, six of us, each carrying a member's
 
 [Hilal · the leader's poise]{.alter-ego}
 
-[Project leadCoordination]{.role}
-
-Işıl held the project together, from initial dataset selection through final-page polish. If something needed deciding, Işıl decided it; if a deadline was approaching, Işıl was already three days ahead. Calm, systematic, and impossible to fluster.
+Işıl contributed to the data cleaning and preprocessing phases of the project by studying the structure of the data, enhancing its consistency, and getting it ready for the analysis and visualization phases. Additionally, contributing to the development of the project website and the report.
 
 [→ isilcakrr's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-isilcakrr/)
 :::
@@ -31,9 +29,7 @@ Işıl held the project together, from initial dataset selection through final-p
 
 [Lidya · the analyst's edge]{.alter-ego}
 
-[Data wranglingEDA]{.role}
-
-Tuğçe lives in the data. She was the one who first noticed how skewed the company-tonnage distribution was, and pushed us toward the log-scale density plot you'll see in the Analysis page. Sharp, precise, and never satisfied with a chart that's only *almost* right.
+Tuğçe is took part in the contributing to the data cleaning and preprocessing phases of the project. She helped for making sure that the final reliable dataset is ready to be used throughout the study. Additionally, participating in the collaborative development of the project website.
 
 [→ TugceBasaran's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-TugceBasaran/)
 :::
@@ -43,9 +39,7 @@ Tuğçe lives in the data. She was the one who first noticed how skewed the comp
 
 [Mina · the storyteller]{.alter-ego}
 
-[NarrativeWriting]{.role}
-
-Zeynep turned numbers into a story. The narrative voice across these pages, and the framing of the 20,000-ton question as a real policy question rather than just a stat, comes from her. Warm, clear, and quietly persuasive.
+Zeynep helped with the visualization part of the project by creating and analyzing graphs and figures concerning the activities involved in handling hazardous materials. Provided contributions in translating data into graphical information which would be useful in the formation of the study’s overall conclusions.
 
 [→ zeynepkizkapann's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-zeynepkizkapann/)
 :::
@@ -55,9 +49,7 @@ Zeynep turned numbers into a story. The narrative voice across these pages, and 
 
 [Sueda · the visual instinct]{.alter-ego}
 
-[DesignVisualization]{.role}
-
-Selin is why the site looks like *this* and not like another stock template. The colour palette, the gradients, the cyan pop you keep noticing on hover, that's her hand. Strong taste, gentle delivery.
+Selin is in charge of the analysis of the dataset. She played a role in analyzing threshold-based situations and extracting information concerning material distribution and companies whose total cargo exceeded 20,000 tons. Additionally, she helped in preparing and organizing the project website
 
 [→ selinatmaca-lab's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-selinatmaca-lab/)
 :::
@@ -67,9 +59,7 @@ Selin is why the site looks like *this* and not like another stock template. The
 
 [Esin · the inspiration]{.alter-ego}
 
-[EngineeringR / Quarto]{.role}
-
-Tarık is our engineer. The choropleth, the data-cleaning script, the R chunks that turn an unruly pivot table into a tidy data frame, all his terrain. Whatever the toolchain throws at us, he picks it up and makes it work.
+Tarık collaborated in visualizing the dataset of hazardous materials together in order to detect material concentrations and distributions via charts, heatmaps and histogram using the R program. Also working on the development of the project website.
 
 [→ birincitarikbugra's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-birincitarikbugra/)
 :::
@@ -79,9 +69,7 @@ Tarık is our engineer. The choropleth, the data-cleaning script, the R chunks t
 
 [Zoktay · the closer]{.alter-ego}
 
-[ModelingTax simulation]{.role}
-
-Onur owned the policy-simulation arc. The hypothetical ₺50/ton tax, the threshold sensitivity, the "what if we changed the rate" sanity checks, those came from him. Pragmatic, fast, and a little bit ruthless when an idea isn't worth keeping.
+Onur helped analyze the data through evaluating material distribution, threshold-based analyses, and policy implications of the results. He contributed in making conclusions from the data and providing analytical evidence in support of the findings displayed in the project website. He also took part in the development of the project website.
 
 [→ onurcangultekin's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-onurcangultekin/)
 :::

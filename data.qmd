@@ -78,7 +78,7 @@ load("data/HNS_2022_clean.RData")  # creates a data frame called `hns2022`
 ## Schema at a glance
 
 | Column | Type | Description |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | `port_authority` | character | Full port-authority name (e.g., *Aliağa Bölge Liman Başkanlığı*) |
 | `port_authority_short` | character | Short form (e.g., *Aliağa*), used for joins |
 | `facility` | character | Facility / terminal that handled the cargo |
