@@ -138,7 +138,7 @@ if ("iso_3166_2" %in% names(tr_states)) {
 }
 
 ggplot(tr_map) +
-  geom_sf(aes(fill = total_mt), color = "#000000", linewidth = 0.35) +
+  geom_sf(aes(fill = total_mt), color = "white", linewidth = 0.35) +
   scale_fill_gradientn(
     colours  = c("#F06292", "#EC407A", "#E91E63", "#C2185B", "#880E4F", "#3D0823"),
     na.value = "#9C8D88",
