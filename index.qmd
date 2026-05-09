@@ -15,7 +15,7 @@ A 2022 deep-dive into hazardous cargo handling across Turkish ports, by the *R'Ä
 
 [Hazardous cargo Â· 2022]{.pill}
 [17 port authorities]{.pill}
-[183 companies]{.pill}
+[180 companies]{.pill}
 :::
 
 ## The project
