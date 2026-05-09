@@ -27,7 +27,7 @@ Turkish ports moved tens of millions of tons of hazardous cargo in 2022, fertili
 2. **Who** are the dominant handlers, and how skewed is the distribution?
 3. **What** would happen if Türkiye taxed companies that exceeded a 20,000-ton threshold?
 
-Our group name **R'ıyo** is a nod to *Manifest*'s "Arıyo", in Turkish the letter *R* reads "ar", so *R'ıyo* = *Arıyo*. Six members, six energies, one dataset.
+Our group name **R'ıyo** is a nod to *Manifest*'s "Arıyo". Six members, six energies, one dataset.
 
 ## Meet the team
 
@@ -43,7 +43,7 @@ You can find each of us on our personal pages, head to [the **Team** page](team.
 - [Onur Can Gültekin](https://emu-hacettepe-analytics.github.io/emu430-spring2026-onurcangultekin/) · *Zoktay*
 
 ::: {.key-takeaways}
-### Key takeaways
+### Key Takeaways
 
 - Hazardous cargo handling in 2022 totaled **~109 million metric tons** across **17 port authorities**, **69 facilities** and **180 receiver companies**, a small slice of firms handles a wildly disproportionate share.
 - The **Aliağa–İzmir corridor** and **Ceyhan** lead by a wide margin, driven by refining and crude-oil terminals; the Eastern Mediterranean and South Marmara coasts form a clear secondary band.
@@ -55,5 +55,5 @@ You can find each of us on our personal pages, head to [the **Team** page](team.
 ## What's next
 
 - The **[Data](data.qmd)** page documents the dataset, source, preprocessing, and link to the cleaned `.RData`.
-- The **[Analysis](analysis.qmd)** page is the main read, Türkiye choropleth, company distribution, and the 20,000-ton tax simulation.
-- The **[Team](team.qmd)** page introduces each of us with our Manifest alter ego.
+- The **[Analysis](analysis.qmd)** page is the main read. Türkiye choropleth, company distribution, and the 20,000-ton tax simulation.
+- The **[Team](team.qmd)** page introduces each of us with our responsibility.
