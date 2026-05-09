@@ -6,10 +6,10 @@ toc: false
 ---
 
 ::: {.hero-block}
-# *R'ıyo* {.shimmer}
+# [*R'ıyo*]{.shimmer}
 
 ::: {.tagline}
-**Where do Türkiye's hazardous cargoes go — and who's behind them?**
+**Where do Türkiye's hazardous cargoes go, and who's behind them?**
 A 2022 deep-dive into hazardous cargo handling across Turkish ports, by the *R'ıyo* team.
 :::
 
@@ -21,18 +21,18 @@ A 2022 deep-dive into hazardous cargo handling across Turkish ports, by the *R'�
 
 ## The project
 
-Turkish ports moved tens of millions of tons of hazardous cargo in 2022 — fertilizers, fuels, chemicals, LPG, crude oil. We took the [Directorate General for Maritime Affairs](https://denizcilik.uab.gov.tr/) operational dataset for that year and asked three questions:
+Turkish ports moved tens of millions of tons of hazardous cargo in 2022, fertilizers, fuels, chemicals, LPG, crude oil. We took the [Directorate General for Maritime Affairs](https://denizcilik.uab.gov.tr/) operational dataset for that year and asked three questions:
 
 1. **Where** is hazardous cargo concentrated geographically?
-2. **Who** are the dominant handlers — and how skewed is the distribution?
+2. **Who** are the dominant handlers, and how skewed is the distribution?
 3. **What** would happen if Türkiye taxed companies that exceeded a 20,000-ton threshold?
 
-Our group name **R'ıyo** is a nod to *Manifest*'s "Arıyo" — in Turkish the letter *R* reads "ar", so *R'ıyo* = *Arıyo*. Six members, six energies, one dataset.
+Our group name **R'ıyo** is a nod to *Manifest*'s "Arıyo", in Turkish the letter *R* reads "ar", so *R'ıyo* = *Arıyo*. Six members, six energies, one dataset.
 
 ## Meet the team
 
 ::: {.member-card}
-You can find each of us on our personal pages — head to [the **Team** page](team.qmd) for the full intros, or jump straight to a profile below.
+You can find each of us on our personal pages, head to [the **Team** page](team.qmd) for the full intros, or jump straight to a profile below.
 :::
 
 - [Işıl Çakır](https://emu-hacettepe-analytics.github.io/emu430-spring2026-isilcakrr/) · *Hilal*
@@ -45,15 +45,15 @@ You can find each of us on our personal pages — head to [the **Team** page](te
 ::: {.key-takeaways}
 ### Key takeaways
 
-- Hazardous cargo handling in 2022 totaled **~109 million metric tons** across **17 port authorities**, **69 facilities** and **180 receiver companies** — a small slice of firms handles a wildly disproportionate share.
+- Hazardous cargo handling in 2022 totaled **~109 million metric tons** across **17 port authorities**, **69 facilities** and **180 receiver companies**, a small slice of firms handles a wildly disproportionate share.
 - The **Aliağa–İzmir corridor** and **Ceyhan** lead by a wide margin, driven by refining and crude-oil terminals; the Eastern Mediterranean and South Marmara coasts form a clear secondary band.
-- The distribution of company-level tonnage is **strongly right-skewed** even on a log axis — a handful of giants extend far past 10⁷ tons while most receivers cluster in the 10³–10⁴ range.
-- **Six in ten companies (107 of 180)** cross the 20,000-ton policy threshold — and together they carry **~99.5%** of all hazardous tonnage. The policy net is wide by headcount but **extremely top-heavy** in actual liability.
-- A simple hypothetical levy of **₺50 per ton** on threshold-exceeding companies would raise about **₺5.4 billion** in annual revenue — with the **top ten handlers alone** contributing the majority of that bill.
+- The distribution of company-level tonnage is **strongly right-skewed** even on a log axis, a handful of giants extend far past 10⁷ tons while most receivers cluster in the 10³–10⁴ range.
+- **Six in ten companies (107 of 180)** cross the 20,000-ton policy threshold, and together they carry **~99.5%** of all hazardous tonnage. The policy net is wide by headcount but **extremely top-heavy** in actual liability.
+- A simple hypothetical levy of **₺50 per ton** on threshold-exceeding companies would raise about **₺5.4 billion** in annual revenue, with the **top ten handlers alone** contributing the majority of that bill.
 :::
 
 ## What's next
 
 - The **[Data](data.qmd)** page documents the dataset, source, preprocessing, and link to the cleaned `.RData`.
-- The **[Analysis](analysis.qmd)** page is the main read — Türkiye choropleth, company distribution, and the 20,000-ton tax simulation.
+- The **[Analysis](analysis.qmd)** page is the main read, Türkiye choropleth, company distribution, and the 20,000-ton tax simulation.
 - The **[Team](team.qmd)** page introduces each of us with our Manifest alter ego.

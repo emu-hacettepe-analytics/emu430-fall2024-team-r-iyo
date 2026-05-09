@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bf1f82f331d7b4f65314e436cbcc0504.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-de65a6009b1a2f889098839d39e7a635.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -210,7 +210,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="what-is-this-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-this-dataset">What is this dataset?</h2>
-<p>The dataset captures <strong>hazardous cargo (HNS — Hazardous and Noxious Substances) handled at Turkish ports during 2022</strong>. It was published by the <strong>Directorate General for Maritime Affairs</strong> (T.C. Ulaştırma ve Altyapı Bakanlığı – Denizcilik Genel Müdürlüğü) and shared with us in the form of a pivot-table workbook prepared by the directorate’s intern team.</p>
+<p>The dataset captures <strong>hazardous cargo (HNS, Hazardous and Noxious Substances) handled at Turkish ports during 2022</strong>. It was published by the <strong>Directorate General for Maritime Affairs</strong> (T.C. Ulaştırma ve Altyapı Bakanlığı – Denizcilik Genel Müdürlüğü) and shared with us in the form of a pivot-table workbook prepared by the directorate’s intern team.</p>
 <p>Each leaf record describes a single cargo movement at the resolution of:</p>
 <ul>
 <li>the <strong>regional port authority</strong> (e.g., <em>Aliağa Bölge Liman Başkanlığı</em>),</li>
@@ -222,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="why-this-dataset">Why this dataset?</h3>
 <p>We chose it for three reasons:</p>
 <ol type="1">
-<li><strong>It’s real, operational, and Turkish.</strong> No simulated toy data — the patterns we surface are about the actual industrial geography of Türkiye’s coastlines.</li>
+<li><strong>It’s real, operational, and Turkish.</strong> No simulated toy data, the patterns we surface are about the actual industrial geography of Türkiye’s coastlines.</li>
 <li><strong>It supports policy questions.</strong> The Maritime Affairs office has flagged firms handling more than 20,000 tons of hazardous cargo as candidates for upcoming tax/regulatory measures. The dataset lets us put numbers on that conversation.</li>
 <li><strong>It’s multi-dimensional.</strong> Company × facility × port authority gives us room for descriptive, geographic, and threshold-based analyses without leaving a single source.</li>
 </ol>
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Drops every subtotal row</strong> (<code>Toplam …</code>) at all three hierarchy levels.</li>
 <li>Drops rows where the company or tonnage is missing.</li>
 <li>Renames the <code>(boş)</code> placeholder facility (used at Güllük) to <code>Unspecified facility</code>.</li>
-<li>Builds a <strong><code>company_clean</code></strong> field — uppercased, ASCII-folded, punctuation-stripped — for grouping near-duplicate company names.</li>
+<li>Builds a <strong><code>company_clean</code></strong> field, uppercased, ASCII-folded, punctuation-stripped, for grouping near-duplicate company names.</li>
 <li>Extracts a <strong><code>port_authority_short</code></strong> field by stripping the boilerplate “Bölge Liman Başkanlığı” suffix.</li>
 <li>Joins a <strong>province + ISO-2 code</strong> lookup so we can map each port authority onto a Turkish province for the choropleth.</li>
 </ol>
@@ -252,8 +252,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/prepare_data.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It writes:</p>
 <ul>
-<li><code>data/HNS_2022_clean.RData</code> — the canonical R object.</li>
-<li><code>data/HNS_2022_clean.csv</code> — the same table in CSV (UTF-8) for inspection / sharing.</li>
+<li><code>data/HNS_2022_clean.RData</code>, the canonical R object.</li>
+<li><code>data/HNS_2022_clean.csv</code>, the same table in CSV (UTF-8) for inspection / sharing.</li>
 </ul>
 </section>
 <section id="download-the-cleaned-data" class="level2">
@@ -922,7 +922,7 @@ Table&nbsp;1: First 10 rows of the cleaned dataset.
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## What is this dataset?</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>The dataset captures **hazardous cargo (HNS — Hazardous and Noxious Substances) handled at Turkish ports during 2022**. It was published by the **Directorate General for Maritime Affairs** (T.C. Ulaştırma ve Altyapı Bakanlığı – Denizcilik Genel Müdürlüğü) and shared with us in the form of a pivot-table workbook prepared by the directorate's intern team.</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>The dataset captures **hazardous cargo (HNS, Hazardous and Noxious Substances) handled at Turkish ports during 2022**. It was published by the **Directorate General for Maritime Affairs** (T.C. Ulaştırma ve Altyapı Bakanlığı – Denizcilik Genel Müdürlüğü) and shared with us in the form of a pivot-table workbook prepared by the directorate's intern team.</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>Each leaf record describes a single cargo movement at the resolution of:</span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -935,7 +935,7 @@ Table&nbsp;1: First 10 rows of the cleaned dataset.
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>We chose it for three reasons:</span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**It's real, operational, and Turkish.** No simulated toy data — the patterns we surface are about the actual industrial geography of Türkiye's coastlines.</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**It's real, operational, and Turkish.** No simulated toy data, the patterns we surface are about the actual industrial geography of Türkiye's coastlines.</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**It supports policy questions.** The Maritime Affairs office has flagged firms handling more than 20,000 tons of hazardous cargo as candidates for upcoming tax/regulatory measures. The dataset lets us put numbers on that conversation.</span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**It's multi-dimensional.** Company × facility × port authority gives us room for descriptive, geographic, and threshold-based analyses without leaving a single source.</span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
@@ -955,7 +955,7 @@ Table&nbsp;1: First 10 rows of the cleaned dataset.
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Drops every subtotal row** (<span class="in">`Toplam …`</span>) at all three hierarchy levels.</span>
 <span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>Drops rows where the company or tonnage is missing.</span>
 <span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>Renames the <span class="in">`(boş)`</span> placeholder facility (used at Güllük) to <span class="in">`Unspecified facility`</span>.</span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Builds a **`company_clean`** field — uppercased, ASCII-folded, punctuation-stripped — for grouping near-duplicate company names.</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>Builds a **`company_clean`** field, uppercased, ASCII-folded, punctuation-stripped, for grouping near-duplicate company names.</span>
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>Extracts a **`port_authority_short`** field by stripping the boilerplate "Bölge Liman Başkanlığı" suffix.</span>
 <span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>Joins a **province + ISO-2 code** lookup so we can map each port authority onto a Turkish province for the choropleth.</span>
 <span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
@@ -967,8 +967,8 @@ Table&nbsp;1: First 10 rows of the cleaned dataset.
 <span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>It writes:</span>
 <span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`data/HNS_2022_clean.RData`</span> — the canonical R object.</span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`data/HNS_2022_clean.csv`</span> — the same table in CSV (UTF-8) for inspection / sharing.</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`data/HNS_2022_clean.RData`</span>, the canonical R object.</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span><span class="in">`data/HNS_2022_clean.csv`</span>, the same table in CSV (UTF-8) for inspection / sharing.</span>
 <span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Download the cleaned data</span></span>
 <span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>

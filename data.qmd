@@ -15,7 +15,7 @@ load("data/HNS_2022_clean.RData")
 
 ## What is this dataset?
 
-The dataset captures **hazardous cargo (HNS — Hazardous and Noxious Substances) handled at Turkish ports during 2022**. It was published by the **Directorate General for Maritime Affairs** (T.C. Ulaştırma ve Altyapı Bakanlığı – Denizcilik Genel Müdürlüğü) and shared with us in the form of a pivot-table workbook prepared by the directorate's intern team.
+The dataset captures **hazardous cargo (HNS, Hazardous and Noxious Substances) handled at Turkish ports during 2022**. It was published by the **Directorate General for Maritime Affairs** (T.C. Ulaştırma ve Altyapı Bakanlığı – Denizcilik Genel Müdürlüğü) and shared with us in the form of a pivot-table workbook prepared by the directorate's intern team.
 
 Each leaf record describes a single cargo movement at the resolution of:
 
@@ -28,7 +28,7 @@ Each leaf record describes a single cargo movement at the resolution of:
 
 We chose it for three reasons:
 
-1.  **It's real, operational, and Turkish.** No simulated toy data — the patterns we surface are about the actual industrial geography of Türkiye's coastlines.
+1.  **It's real, operational, and Turkish.** No simulated toy data, the patterns we surface are about the actual industrial geography of Türkiye's coastlines.
 2.  **It supports policy questions.** The Maritime Affairs office has flagged firms handling more than 20,000 tons of hazardous cargo as candidates for upcoming tax/regulatory measures. The dataset lets us put numbers on that conversation.
 3.  **It's multi-dimensional.** Company × facility × port authority gives us room for descriptive, geographic, and threshold-based analyses without leaving a single source.
 
@@ -48,7 +48,7 @@ The full preprocessing script lives at `R/prepare_data.R`. In short, it:
 2.  **Drops every subtotal row** (`Toplam …`) at all three hierarchy levels.
 3.  Drops rows where the company or tonnage is missing.
 4.  Renames the `(boş)` placeholder facility (used at Güllük) to `Unspecified facility`.
-5.  Builds a **`company_clean`** field — uppercased, ASCII-folded, punctuation-stripped — for grouping near-duplicate company names.
+5.  Builds a **`company_clean`** field, uppercased, ASCII-folded, punctuation-stripped, for grouping near-duplicate company names.
 6.  Extracts a **`port_authority_short`** field by stripping the boilerplate "Bölge Liman Başkanlığı" suffix.
 7.  Joins a **province + ISO-2 code** lookup so we can map each port authority onto a Turkish province for the choropleth.
 
@@ -60,8 +60,8 @@ source("R/prepare_data.R")
 
 It writes:
 
--   `data/HNS_2022_clean.RData` — the canonical R object.
--   `data/HNS_2022_clean.csv` — the same table in CSV (UTF-8) for inspection / sharing.
+-   `data/HNS_2022_clean.RData`, the canonical R object.
+-   `data/HNS_2022_clean.csv`, the same table in CSV (UTF-8) for inspection / sharing.
 
 ## Download the cleaned data
 

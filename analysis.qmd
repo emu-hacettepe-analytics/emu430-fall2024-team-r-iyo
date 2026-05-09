@@ -52,15 +52,11 @@ palette_riyo <- c("#C2185B", "#FF2D87", "#E5B43C", "#00C9D8", "#6A0F3D", "#2A0E3
 ::: key-takeaways
 ## Key takeaways
 
-<<<<<<< HEAD
--   The dataset includes 215 cargo movements from 17port authorities, 69 facilities and 180 differentcompanies with approximately 109 million metric tonsof hazardous cargo reported in 2022.
-=======
->>>>>>> 6210fe3e97d5fa0d28c439c8021dbdc6f18271f9
 -   The dataset records **215 cargo movements** across **17 port authorities, 69 facilities, and 180 distinct companies**, totaling \~109 million metric tons of hazardous cargo in 2022.
--   Hazardous cargo concentration is **geographically lopsided** — İzmir (Aliağa), Adana (Ceyhan), and Hatay (İskenderun) absorb the bulk; most provinces see only fractional volumes.
+-   Hazardous cargo concentration is **geographically lopsided**, İzmir (Aliağa), Adana (Ceyhan), and Hatay (İskenderun) absorb the bulk; most provinces see only fractional volumes.
 -   Company-level tonnage is **steeply right-skewed**: a heavy upper tail extends past 10⁷ tons while the bulk of receivers cluster in the 10³–10⁴ range.
--   **About six in ten companies (107 / 180)** cross the 20,000-ton threshold — but those companies carry **\~99.5%** of all hazardous tonnage. The policy net is wide by headcount, extremely concentrated by liability.
--   A hypothetical **₺50/ton** levy on threshold-exceeding companies would yield approximately **₺5.4 billion** in revenue — with the top-ten handlers contributing the majority of the bill.
+-   **About six in ten companies (107 / 180)** cross the 20,000-ton threshold, but those companies carry **\~99.5%** of all hazardous tonnage. The policy net is wide by headcount, extremely concentrated by liability.
+-   A hypothetical **₺50/ton** levy on threshold-exceeding companies would yield approximately **₺5.4 billion** in revenue, with the top-ten handlers contributing the majority of the bill.
 :::
 
 ## 1. Overview of the dataset
@@ -116,7 +112,7 @@ format(round(overview$total_cargo_mt / 1e6, 1), big.mark = ",")
 
 The dataset is a long table where each row pairs a *receiver company* with the *facility* that handled their cargo and the *regional port authority* that oversees that facility. The numeric column `cargo_mt` is what we'll be slicing in every direction below.
 
-## 2. Where is hazardous cargo concentrated? — Türkiye choropleth
+## 2. Where is hazardous cargo concentrated: Türkiye choropleth
 
 We map each regional port authority onto its host province and sum 2022 tonnage by province. Darker = more cargo.
 
@@ -172,7 +168,7 @@ ggplot(tr_map) +
 
 The Aegean coast (especially **İzmir**, which hosts both Aliağa and the İzmir port authority) and the Eastern Mediterranean (**Adana**'s Ceyhan terminals and **Hatay**'s İskenderun) carry most of the load. The Black Sea, Marmara, and Antalya regions show meaningful but smaller volumes.
 
-## 3. How is cargo distributed across companies? — density plot
+## 3. How is cargo distributed across companies: density plot
 
 Aggregating to company-level totals and plotting the density on a log axis:
 
@@ -209,13 +205,13 @@ ggplot(company_totals, aes(x = total_mt)) +
   theme_riyo()
 ```
 
-The shape is unmistakable: a long left tail of small handlers, a clear hump in the **10³–10⁴ ton** range, then a thin upper tail extending well past **10⁷ tons**. Viewed on a linear axis the small companies would be invisible — they're outnumbered by but dwarfed in volume by a few giants.
+The shape is unmistakable: a long left tail of small handlers, a clear hump in the **10³–10⁴ ton** range, then a thin upper tail extending well past **10⁷ tons**. Viewed on a linear axis the small companies would be invisible, they're outnumbered by but dwarfed in volume by a few giants.
 
-## 4. The 20,000-ton question — a hypothetical tax simulation
+## 4. The 20,000-ton question, a hypothetical tax simulation
 
 The Directorate is considering tax/regulatory measures targeting companies that exceed **20,000 tons** of hazardous cargo per year. To put a number on what that would mean, we apply a hypothetical **₺50 per ton** levy on the *full* tonnage of any company that crosses the threshold.
 
-> **Disclaimer.** ₺50/ton is illustrative — chosen for arithmetic clarity, not based on any draft policy. Treat absolute figures as proportions, not forecasts.
+> **Disclaimer.** ₺50/ton is illustrative, chosen for arithmetic clarity, not based on any draft policy. Treat absolute figures as proportions, not forecasts.
 
 ```{r}
 #| label: tax-simulation
@@ -246,7 +242,7 @@ threshold_summary
 #| label: threshold-share
 #| fig-width: 9
 #| fig-height: 4.5
-#| fig-cap: "How many companies exceed the threshold — and what share of total tonnage they account for."
+#| fig-cap: "How many companies exceed the threshold, and what share of total tonnage they account for."
 share_df <- tibble(
   metric = factor(
     c("Companies", "Tonnage moved"),
@@ -272,7 +268,7 @@ ggplot(share_df, aes(x = metric, y = pct, fill = side)) +
   labs(
     title    = "Wide net, top-heavy bill.",
     subtitle = sprintf(
-      "%.0f%% of companies cross the 20,000-ton threshold — and together they account for ~%.1f%% of all hazardous tonnage.",
+      "%.0f%% of companies cross the 20,000-ton threshold, and together they account for ~%.1f%% of all hazardous tonnage.",
       threshold_summary$pct_companies, threshold_summary$pct_taxed_mt
     ),
     x = NULL, y = "Share (%)", fill = NULL,
@@ -307,7 +303,7 @@ ggplot(top10_tax, aes(x = label_short, y = tax_TL / 1e6)) +
     expand = expansion(mult = c(0, 0.18))
   ) +
   labs(
-    title    = "Where the bill would land — top 10 hypothetical taxpayers",
+    title    = "Where the bill would land, top 10 hypothetical taxpayers",
     subtitle = sprintf(
       "Total industry liability ≈ ₺%.1f billion · top 10 share ≈ %.0f%%",
       threshold_summary$total_tax_billion,
@@ -366,7 +362,7 @@ ggplot(sens, aes(x = threshold)) +
   scale_y_continuous(limits = c(0, 105), labels = function(x) paste0(x, "%")) +
   labs(
     title    = "How sharp is the cliff at 20,000 tons?",
-    subtitle = "Even a 5x or 10x stricter threshold barely loses tonnage coverage — the giants dominate.",
+    subtitle = "Even a 5x or 10x stricter threshold barely loses tonnage coverage, the giants dominate.",
     x = "Threshold (metric tons, log scale)",
     y = "Share of total tonnage above threshold",
     caption = "Annotations show the number of companies caught at each threshold."
@@ -374,9 +370,9 @@ ggplot(sens, aes(x = threshold)) +
   theme_riyo()
 ```
 
-The take-away: because the upper tail is so heavy, **moving the threshold up by an order of magnitude barely reduces tonnage coverage** — but it sharply reduces the *number* of companies subject to the policy. That's a useful lever for designers who want a high-impact, low-friction policy.
+The take-away: because the upper tail is so heavy, **moving the threshold up by an order of magnitude barely reduces tonnage coverage**, but it sharply reduces the *number* of companies subject to the policy. That's a useful lever for designers who want a high-impact, low-friction policy.
 
-## 5. Where do these companies handle their cargo? — port-authority breakdown
+## 5. Where do these companies handle their cargo: port-authority breakdown
 
 ```{r}
 #| label: port-bar
@@ -400,11 +396,69 @@ ggplot(port_totals, aes(x = fct_reorder(port_authority_short, total_mt), y = tot
   theme_riyo()
 ```
 
-## 6. Conclusions
+## 6. By coastal region: where does the spread sit?
 
--   **Geography:** Türkiye's hazardous cargo handling is **not evenly distributed**. A small set of provinces — driven by refining and large export terminals — dominates national volume.
+Aggregating to province level can let outliers (a single mega-refinery, a single LPG terminal) dominate the picture. Grouping ports by Türkiye's four coastal regions gives a more balanced view of how *typical* hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every leaf record in the dataset, plotted on a logarithmic axis to keep both small and very large shipments visible. The box itself shows the middle 50% of cargo movements, the line inside the box is the median, and the dots above the whiskers are outliers, often individual mega-shipments.
+
+```{r}
+#| label: region-boxplot
+#| fig-width: 9
+#| fig-height: 5.2
+#| fig-cap: "Distribution of leaf-record cargo tonnage across Türkiye's four coastal regions, 2022 (log-10 axis)."
+
+region_map <- tibble::tribble(
+  ~province,    ~region,
+  "Balıkesir",  "Marmara",
+  "Tekirdağ",   "Marmara",
+  "İstanbul",   "Marmara",
+  "Çanakkale",  "Marmara",
+  "Bursa",      "Marmara",
+  "İzmir",      "Aegean",
+  "Muğla",      "Aegean",
+  "Antalya",    "Mediterranean",
+  "Mersin",     "Mediterranean",
+  "Adana",      "Mediterranean",
+  "Hatay",      "Mediterranean",
+  "Samsun",     "Black Sea",
+  "Trabzon",    "Black Sea",
+  "Giresun",    "Black Sea",
+  "Zonguldak",  "Black Sea"
+)
+
+hns_region <- hns2022 |>
+  left_join(region_map, by = "province") |>
+  mutate(region = factor(region,
+                         levels = c("Marmara", "Aegean", "Mediterranean", "Black Sea")))
+
+region_palette <- c(
+  "Marmara"       = "#C2185B",
+  "Aegean"        = "#FF2D87",
+  "Mediterranean" = "#E91E63",
+  "Black Sea"     = "#880E4F"
+)
+
+ggplot(hns_region, aes(x = region, y = cargo_mt, fill = region)) +
+  geom_boxplot(alpha = 0.85, color = "#3D0823", outlier.color = "#3D0823",
+               outlier.size = 1.8, width = 0.55) +
+  scale_y_log10(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  scale_fill_manual(values = region_palette, guide = "none") +
+  labs(
+    title    = "Cargo tonnage per record, by coastal region",
+    subtitle = "Each point is one company at one facility in 2022. Log-10 axis.",
+    x = NULL,
+    y = "Cargo per record (metric tons, log scale)",
+    caption = "Box: middle 50%. Line: median. Whiskers: 1.5x IQR. Dots: outliers."
+  ) +
+  theme_riyo()
+```
+
+The four regions tell different stories. Marmara and the Black Sea share the highest *typical* (median) cargo size per record, both sitting around the 50,000-ton mark, reflecting the steady volume of LPG and petroleum terminals around İstanbul, Tekirdağ, Samsun and Karadeniz Ereğli. The Mediterranean has the lowest median yet hosts the most extreme outliers, driven by a handful of mega-shipments at Ceyhan and İskenderun that sit far above the rest of the region. The Aegean's median falls in the middle, but its outliers (the Aliağa refinery and Star Aliağa terminal) are among the largest single records in the entire dataset. Across all four regions, the gap between an average shipment and the regional giant spans three to four orders of magnitude, which is the recurring shape of this dataset: a steady base of routine handling on top of a thin layer of exceptional volume.
+
+## 7. Conclusions
+
+-   **Geography:** Türkiye's hazardous cargo handling is **not evenly distributed**. A small set of provinces, driven by refining and large export terminals, dominates national volume.
 -   **Industry structure:** The market is a **classic heavy-tailed distribution**. Many small handlers, a few giants moving most of the tonnage.
--   **Policy implication:** Because volume is so concentrated, a tonnage-based levy is **administratively narrow** — it would touch a minority of companies but capture most of the activity. That makes it both **easy to enforce** and **politically charged**.
--   **Sensitivity:** Moving the threshold from 20,000 to 100,000 or 200,000 tons would *not* meaningfully reduce coverage of total tonnage but would *significantly* reduce the number of regulated firms — a real lever for policy designers.
+-   **Policy implication:** Because volume is so concentrated, a tonnage-based levy is **administratively narrow**, it would touch a minority of companies but capture most of the activity. That makes it both **easy to enforce** and **politically charged**.
+-   **Sensitivity:** Moving the threshold from 20,000 to 100,000 or 200,000 tons would *not* meaningfully reduce coverage of total tonnage but would *significantly* reduce the number of regulated firms, a real lever for policy designers.
 
 Visit our [Data page](data.qmd) for documentation and the cleaned dataset, and the [Team page](team.qmd) to meet the people behind it.
