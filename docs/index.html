@@ -174,7 +174,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="tagline">
 <p><strong>Where do Türkiye’s hazardous cargoes go, and who’s behind them?</strong> A 2022 deep-dive into hazardous cargo handling across Turkish ports, by the <em>R’ıyo</em> team.</p>
 </div>
-<p><span class="pill">Hazardous cargo · 2022</span> <span class="pill">17 port authorities</span> <span class="pill">~183 companies</span> <span class="pill">1 cyan threshold</span></p>
+<p><span class="pill">Hazardous cargo · 2022</span> <span class="pill">17 port authorities</span> <span class="pill">180 companies</span></p>
 </section>
 <section id="the-project" class="level2">
 <h2 class="anchored" data-anchor-id="the-project">The project</h2>
@@ -182,7 +182,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><strong>Where</strong> is hazardous cargo concentrated geographically?</li>
 <li><strong>Who</strong> are the dominant handlers, and how skewed is the distribution?</li>
-<li><strong>What</strong> would happen if Türkiye taxed companies that exceeded a 20,000-ton threshold?</li>
+<li><strong>What</strong> would happen if Türkiye taxed companies that exceeded a 20,000 ton threshold?</li>
 </ol>
 <p>Our group name <strong>R’ıyo</strong> is a nod to <em>Manifest</em>’s “Arıyo”. Six members, six energies, one dataset.</p>
 </section>
@@ -202,11 +202,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="key-takeaways" class="level3 key-takeaways">
 <h3 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h3>
 <ul>
-<li>Hazardous cargo handling in 2022 totaled <strong>~109 million metric tons</strong> across <strong>17 port authorities</strong>, <strong>69 facilities</strong> and <strong>180 receiver companies</strong>, a small slice of firms handles a wildly disproportionate share.</li>
-<li>The <strong>Aliağa–İzmir corridor</strong> and <strong>Ceyhan</strong> lead by a wide margin, driven by refining and crude-oil terminals; the Eastern Mediterranean and South Marmara coasts form a clear secondary band.</li>
-<li>The distribution of company-level tonnage is <strong>strongly right-skewed</strong> even on a log axis, a handful of giants extend far past 10⁷ tons while most receivers cluster in the 10³–10⁴ range.</li>
-<li><strong>Six in ten companies (107 of 180)</strong> cross the 20,000-ton policy threshold, and together they carry <strong>~99.5%</strong> of all hazardous tonnage. The policy net is wide by headcount but <strong>extremely top-heavy</strong> in actual liability.</li>
-<li>A simple hypothetical levy of <strong>₺50 per ton</strong> on threshold-exceeding companies would raise about <strong>₺5.4 billion</strong> in annual revenue, with the <strong>top ten handlers alone</strong> contributing the majority of that bill.</li>
+<li><p>Handling of hazardous cargoes in 2022 amounted to <em>around 109 million tons</em> through <em>17 port authorities, <strong>69 facilities, and </strong>180 receivers</em> only a tiny minority of firms process a disproportionately large volume.</p></li>
+<li><p>The corridor of <em>Aliağa–İzmir</em> and <em>Ceyhan</em> are the leaders with overwhelming dominance, attributable primarily to oil refineries and crude-oil terminal operators, with a secondary group consisting of the Eastern Mediterranean and South Marmara coasts.</p></li>
+<li><p>The distribution of tonnage received by firms follows a <em>distinctly right-skewed pattern</em> despite the logarithmic scale only a select few extend above 10⁷ tons, with most others clustering around 10³–10⁴ tons.</p></li>
+<li><p><em>Six in ten companies</em> exceed the 20,000 ton threshold accounting for <em>nearly 99.5%</em> of all tons processed by receivers. While there are many firms, their policy coverage is highly <em>concentrated at the extreme tail end.</em></p></li>
+<li><p>A straightforward calculation based on this policy yields a yearly revenue of approximately <em>₺5.4 billion</em>, even on the basis of a flat tax rate of *₺50 per ton** levied on firms exceeding the threshold.</p></li>
 </ul>
 </section>
 </section>
@@ -697,48 +697,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Hazardous cargo · 2022</span><span class="co">]</span>{.pill}</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">17 port authorities</span><span class="co">]</span>{.pill}</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">~183 companies</span><span class="co">]</span>{.pill}</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">1 cyan threshold</span><span class="co">]</span>{.pill}</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## The project</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>Turkish ports moved tens of millions of tons of hazardous cargo in 2022, fertilizers, fuels, chemicals, LPG, crude oil. We took the <span class="co">[</span><span class="ot">Directorate General for Maritime Affairs</span><span class="co">](https://denizcilik.uab.gov.tr/)</span> operational dataset for that year and asked three questions:</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Where** is hazardous cargo concentrated geographically?</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Who** are the dominant handlers, and how skewed is the distribution?</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**What** would happen if Türkiye taxed companies that exceeded a 20,000-ton threshold?</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>Our group name **R'ıyo** is a nod to *Manifest*'s "Arıyo". Six members, six energies, one dataset.</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Meet the team</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>::: {.member-card}</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>You can find each of us on our personal pages, head to <span class="co">[</span><span class="ot">the **Team** page</span><span class="co">](team.qmd)</span> for the full intros, or jump straight to a profile below.</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Işıl Çakır</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-isilcakrr/)</span> · *Hilal*</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Tuğçe Başaran</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-TugceBasaran/)</span> · *Lidya*</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Zeynep Kızkapan</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-zeynepkizkapann/)</span> · *Mina*</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Selin Atmaca</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-selinatmaca-lab/)</span> · *Sueda*</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Tarık Buğra Birinci</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-birincitarikbugra/)</span> · *Esin*</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Onur Can Gültekin</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-onurcangultekin/)</span> · *Zoktay*</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>::: {.key-takeaways}</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Takeaways</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Hazardous cargo handling in 2022 totaled **~109 million metric tons** across **17 port authorities**, **69 facilities** and **180 receiver companies**, a small slice of firms handles a wildly disproportionate share.</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **Aliağa–İzmir corridor** and **Ceyhan** lead by a wide margin, driven by refining and crude-oil terminals; the Eastern Mediterranean and South Marmara coasts form a clear secondary band.</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The distribution of company-level tonnage is **strongly right-skewed** even on a log axis, a handful of giants extend far past 10⁷ tons while most receivers cluster in the 10³–10⁴ range.</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Six in ten companies (107 of 180)** cross the 20,000-ton policy threshold, and together they carry **~99.5%** of all hazardous tonnage. The policy net is wide by headcount but **extremely top-heavy** in actual liability.</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A simple hypothetical levy of **₺50 per ton** on threshold-exceeding companies would raise about **₺5.4 billion** in annual revenue, with the **top ten handlers alone** contributing the majority of that bill.</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">180 companies</span><span class="co">]</span>{.pill}</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## The project</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Turkish ports moved tens of millions of tons of hazardous cargo in 2022, fertilizers, fuels, chemicals, LPG, crude oil. We took the <span class="co">[</span><span class="ot">Directorate General for Maritime Affairs</span><span class="co">](https://denizcilik.uab.gov.tr/)</span> operational dataset for that year and asked three questions:</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Where** is hazardous cargo concentrated geographically?</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Who** are the dominant handlers, and how skewed is the distribution?</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**What** would happen if Türkiye taxed companies that exceeded a 20,000 ton threshold?</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Our group name **R'ıyo** is a nod to *Manifest*'s "Arıyo". Six members, six energies, one dataset.</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Meet the team</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>::: {.member-card}</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>You can find each of us on our personal pages, head to <span class="co">[</span><span class="ot">the **Team** page</span><span class="co">](team.qmd)</span> for the full intros, or jump straight to a profile below.</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Işıl Çakır</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-isilcakrr/)</span> · *Hilal*</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Tuğçe Başaran</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-TugceBasaran/)</span> · *Lidya*</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Zeynep Kızkapan</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-zeynepkizkapann/)</span> · *Mina*</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Selin Atmaca</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-selinatmaca-lab/)</span> · *Sueda*</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Tarık Buğra Birinci</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-birincitarikbugra/)</span> · *Esin*</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Onur Can Gültekin</span><span class="co">](https://emu-hacettepe-analytics.github.io/emu430-spring2026-onurcangultekin/)</span> · *Zoktay*</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>::: {.key-takeaways}</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Key Takeaways</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Handling of hazardous cargoes in 2022 amounted to *around 109 million tons* through *17 port authorities, **69 facilities, and **180 receivers*  only a tiny minority of firms process a disproportionately large volume.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The corridor of *Aliağa–İzmir* and *Ceyhan* are the leaders with overwhelming dominance, attributable primarily to oil refineries and crude-oil terminal operators, with a secondary group consisting of the Eastern Mediterranean and South Marmara coasts.</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The distribution of tonnage received by firms follows a *distinctly right-skewed pattern* despite the logarithmic scale only a select few extend above 10⁷ tons, with most others clustering around 10³–10⁴ tons.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Six in ten companies* exceed the 20,000 ton threshold accounting for *nearly 99.5%* of all tons processed by receivers. While there are many firms, their policy coverage is highly *concentrated at the extreme tail end.*</span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## What's next</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **[Data](data.qmd)** page documents the dataset, source, preprocessing, and link to the cleaned <span class="in">`.RData`</span>.</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **[Analysis](analysis.qmd)** page is the main read. Türkiye choropleth, company distribution, and the 20,000-ton tax simulation.</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **[Team](team.qmd)** page introduces each of us with our responsibility.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A straightforward calculation based on this policy yields a yearly revenue of approximately *₺5.4 billion*, even on the basis of a flat tax rate of *₺50 per ton** levied on firms exceeding the threshold.</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="fu">## What's next</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **[Data](data.qmd)** page documents the dataset, source, preprocessing, and link to the cleaned <span class="in">`.RData`</span>.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **[Analysis](analysis.qmd)** page is the main read. Türkiye choropleth, company distribution, and the 20,000-ton tax simulation.</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The **[Team](team.qmd)** page introduces each of us with our responsibility.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
