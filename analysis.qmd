@@ -49,14 +49,14 @@ theme_riyo <- function() {
 palette_riyo <- c("#C2185B", "#FF2D87", "#E5B43C", "#00C9D8", "#6A0F3D", "#2A0E33")
 ```
 
-::: {.key-takeaways}
+::: key-takeaways
 ## Key takeaways
 
-- The dataset records **215 cargo movements** across **17 port authorities, 69 facilities, and 180 distinct companies**, totaling ~109 million metric tons of hazardous cargo in 2022.
-- Hazardous cargo concentration is **geographically lopsided** — İzmir (Aliağa), Adana (Ceyhan), and Hatay (İskenderun) absorb the bulk; most provinces see only fractional volumes.
-- Company-level tonnage is **steeply right-skewed**: a heavy upper tail extends past 10⁷ tons while the bulk of receivers cluster in the 10³–10⁴ range.
-- **About six in ten companies (107 / 180)** cross the 20,000-ton threshold — but those companies carry **~99.5%** of all hazardous tonnage. The policy net is wide by headcount, extremely concentrated by liability.
-- A hypothetical **₺50/ton** levy on threshold-exceeding companies would yield approximately **₺5.4 billion** in revenue — with the top-ten handlers contributing the majority of the bill.
+-   The dataset records **215 cargo movements** across **17 port authorities, 69 facilities, and 180 distinct companies**, totaling \~109 million metric tons of hazardous cargo in 2022.
+-   Hazardous cargo concentration is **geographically lopsided** — İzmir (Aliağa), Adana (Ceyhan), and Hatay (İskenderun) absorb the bulk; most provinces see only fractional volumes.
+-   Company-level tonnage is **steeply right-skewed**: a heavy upper tail extends past 10⁷ tons while the bulk of receivers cluster in the 10³–10⁴ range.
+-   **About six in ten companies (107 / 180)** cross the 20,000-ton threshold — but those companies carry **\~99.5%** of all hazardous tonnage. The policy net is wide by headcount, extremely concentrated by liability.
+-   A hypothetical **₺50/ton** levy on threshold-exceeding companies would yield approximately **₺5.4 billion** in revenue — with the top-ten handlers contributing the majority of the bill.
 :::
 
 ## 1. Overview of the dataset
@@ -398,9 +398,9 @@ ggplot(port_totals, aes(x = fct_reorder(port_authority_short, total_mt), y = tot
 
 ## 6. Conclusions
 
-- **Geography:** Türkiye's hazardous cargo handling is **not evenly distributed**. A small set of provinces — driven by refining and large export terminals — dominates national volume.
-- **Industry structure:** The market is a **classic heavy-tailed distribution**. Many small handlers, a few giants moving most of the tonnage.
-- **Policy implication:** Because volume is so concentrated, a tonnage-based levy is **administratively narrow** — it would touch a minority of companies but capture most of the activity. That makes it both **easy to enforce** and **politically charged**.
-- **Sensitivity:** Moving the threshold from 20,000 to 100,000 or 200,000 tons would *not* meaningfully reduce coverage of total tonnage but would *significantly* reduce the number of regulated firms — a real lever for policy designers.
+-   **Geography:** Türkiye's hazardous cargo handling is **not evenly distributed**. A small set of provinces — driven by refining and large export terminals — dominates national volume.
+-   **Industry structure:** The market is a **classic heavy-tailed distribution**. Many small handlers, a few giants moving most of the tonnage.
+-   **Policy implication:** Because volume is so concentrated, a tonnage-based levy is **administratively narrow** — it would touch a minority of companies but capture most of the activity. That makes it both **easy to enforce** and **politically charged**.
+-   **Sensitivity:** Moving the threshold from 20,000 to 100,000 or 200,000 tons would *not* meaningfully reduce coverage of total tonnage but would *significantly* reduce the number of regulated firms — a real lever for policy designers.
 
 Visit our [Data page](data.qmd) for documentation and the cleaned dataset, and the [Team page](team.qmd) to meet the people behind it.
