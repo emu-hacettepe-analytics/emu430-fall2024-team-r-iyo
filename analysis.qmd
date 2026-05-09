@@ -55,9 +55,9 @@ palette_riyo <- c("#C2185B", "#FF2D87", "#E5B43C", "#00C9D8", "#6A0F3D", "#2A0E3
 ::: key-takeaways
 ## Key Takeaways
 
--   The dataset includes **215 cargo movements** from **17 port authorities, 69 facilities and 183 different companies** with approximately 109 million metric tons of hazardous cargo reported in 2022. Geographic concentration is striking **İzmir (Aliağa), Adana (Ceyhan)** and **Hatay (İskenderun)** dominate the volume while most other provinces handle only a sliver of the total.
+-   The dataset includes **215 cargo movements** from **17 port authorities, 69 facilities and 180 different companies** with approximately 109 million metric tons of hazardous cargo reported in 2022. Geographic concentration is striking **İzmir (Aliağa), Adana (Ceyhan)** and **Hatay (İskenderun)** dominate the volume while most other provinces handle only a sliver of the total.
 
--   **Company-level tonnage is deeply uneven.** Just **107 of the 183 companies** clear the 20,000 ton threshold but together they move roughly **99.5% of all hazardous cargo.** Wide by headcount, narrow by liability.
+-   **Company-level tonnage is deeply uneven.** Just **107 of the 180 companies** clear the 20,000 ton threshold but together they move roughly **99.5% of all hazardous cargo.** Wide by headcount, narrow by liability.
 
 -   A hypothetical **₺50/ton levy** on those threshold crossing companies would bring in around **₺5.4 billion** most of it coming from the top ten handlers alone.
 :::
