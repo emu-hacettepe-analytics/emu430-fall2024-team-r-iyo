@@ -15,7 +15,7 @@ A 2022 deep-dive into hazardous cargo handling across Turkish ports, by the *R'�
 
 [Hazardous cargo · 2022]{.pill}
 [17 port authorities]{.pill}
-[180 companies]{.pill}
+[183 companies]{.pill}
 :::
 
 ## The project
@@ -44,13 +44,15 @@ You can find each of us on our personal pages, head to [the **Team** page](team.
 ::: {.key-takeaways}
 ### Key Takeaways
 
-- Handling of hazardous cargoes in 2022 amounted to *around 109 million tons* through *17 port authorities, **69 facilities, and **180 receivers*  only a tiny minority of firms process a disproportionately large volume.
+- Handling of hazardous cargoes in 2022 amounted to **around 109 million tons** through **17 port authorities**, **69 facilities**, and **180 receivers**, only a tiny minority of firms process a disproportionately large volume.
 
-- The corridor of *Aliağa–İzmir* and *Ceyhan* are the leaders with overwhelming dominance, attributable primarily to oil refineries and crude-oil terminal operators, with a secondary group consisting of the Eastern Mediterranean and South Marmara coasts.
+- The corridor of **Aliağa–İzmir** and **Ceyhan** are the leaders with overwhelming dominance, attributable primarily to oil refineries and crude-oil terminal operators, with a secondary group consisting of the Eastern Mediterranean and South Marmara coasts.
 
-- *Six in ten companies* exceed the 20,000 ton threshold accounting for *nearly 99.5%* of all tons processed by receivers. While there are many firms, their policy coverage is highly *concentrated at the extreme tail end.*
+- The distribution of tonnage received by firms follows a **distinctly right-skewed pattern** despite the logarithmic scale, only a select few extend above 10⁷ tons, with most others clustering around 10³–10⁴ tons.
 
-- A straightforward calculation based on this policy yields a yearly revenue of approximately *₺5.4 billion*, even on the basis of a flat tax rate of *₺50 per ton** levied on firms exceeding the threshold.
+- **Six in ten companies** exceed the 20,000 ton threshold accounting for **nearly 99.5%** of all tons processed by receivers. While there are many firms, their policy coverage is highly **concentrated at the extreme tail end.**
+
+- A straightforward calculation based on this policy yields a yearly revenue of approximately **₺5.4 billion**, even on the basis of a flat tax rate of **₺50 per ton** levied on firms exceeding the threshold.
 :::
 
 ## What's next

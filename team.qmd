@@ -49,7 +49,7 @@ Zeynep helped with the visualization part of the project by creating and analyzi
 
 [Sueda · the visual instinct]{.alter-ego}
 
-Selin is in charge of the analysis of the dataset. She played a role in analyzing threshold-based situations and extracting information concerning material distribution and companies whose total cargo exceeded 20,000 tons. Additionally, she helped in preparing and organizing the project website
+Selin is in charge of the analysis of the dataset. She played a role in analyzing threshold-based situations and extracting information concerning material distribution and companies whose total cargo exceeded 20,000 tons. Additionally, she helped in preparing and organizing the project website.
 
 [→ selinatmaca-lab's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-selinatmaca-lab/)
 :::
