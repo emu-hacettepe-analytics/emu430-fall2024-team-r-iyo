@@ -401,9 +401,9 @@ ggplot(port_totals, aes(x = fct_reorder(port_authority_short, total_mt), y = tot
   theme_riyo()
 ```
 
-## 6. By coastal region: where does the spread sit?
+## 6. Regional Distribution of Hazardous Cargo Activities
 
-Aggregating to province level can let outliers like a single megarefinery or a single LPG terminal dominate the picture. Grouping ports by Türkiye's four coastal regions gives a more balanced view of how typical hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every record in the dataset on a logarithmic axis, keeping both small and very large shipments visible. The box itself covers the middle 50% of cargo movements, the line inside is the median and the dots beyond the whiskers are outliers, often individual megashipments.
+Grouping ports by Türkiye's four coastal regions gives a more balanced view of how typical hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every record in the dataset on a logarithmic axis, keeping both small and very large shipments visible. The box itself covers the middle 50% of cargo movements, the line inside is the median and the dots beyond the whiskers are outliers, often individual megashipments.
 
 ```{r}
 #| label: region-boxplot
@@ -457,7 +457,11 @@ ggplot(hns_region, aes(x = region, y = cargo_mt, fill = region)) +
   theme_riyo()
 ```
 
-The four regions tell different stories. Marmara and the Black Sea share the highest *typical* (median) cargo size per record, both sitting around the 50,000 ton mark, reflecting the steady volume of LPG and petroleum terminals around İstanbul, Tekirdağ, Samsun and Karadeniz Ereğli. The Mediterranean has the lowest median yet hosts the most extreme outliers, driven by a handful of megashipments at Ceyhan and İskenderun that sit far above the rest of the region. The Aegean's median falls in the middle but its outliers (the Aliağa refinery and Star Aliağa terminal) are among the largest single records in the entire dataset. Across all four regions, the gap between an average shipment and the regional giant spans three to four orders of magnitude which is the recurring shape of this dataset: **a steady base of routine handling on top of a thin layer of exceptional volume.**
+The four coastal areas have different hazardous cargo patterns. Marmara and Black Sea coastlines are the two coastal areas with the highest average cargo volumes, with median cargo volumes of about 50,000 tons. This can be attributed to the continuous operations of petroleum terminals and liquefied petroleum gas (LPG) terminals found in locations like İstanbul, Tekirdağ, Samsun, and Karadeniz Ereğli.
+
+Mediterranean is the area with the lowest median cargo volume; however, it also holds some of the largest cargo volumes in the dataset. Operations at ports such as Ceyhan and İskenderun result in extraordinarily large cargo volumes when compared to the other regions.
+
+The Aegean area is in between the above scenarios where there are medium-sized cargo volumes, though some facilities like the Aliağa refinery and Star Aliağa terminal hold some of the highest cargo volume records in the dataset.
 
 ## 7. Conclusions
 
