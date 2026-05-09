@@ -138,12 +138,12 @@ if ("iso_3166_2" %in% names(tr_states)) {
 }
 
 ggplot(tr_map) +
-  geom_sf(aes(fill = total_mt), color = "white", linewidth = 0.2) +
+  geom_sf(aes(fill = total_mt), color = "white", linewidth = 0.25) +
   scale_fill_gradientn(
-    colours = c("#FFF0F5", "#FFC1D8", "#FF80B0", "#FF2D87", "#C2185B", "#6A0F3D"),
-    na.value = "#F5EEEA",
-    labels = scales::label_number(scale_cut = scales::cut_short_scale()),
-    name = "Cargo (m. ton)"
+    colours  = c("#FFB3CC", "#FF6FA3", "#FF1F77", "#C2185B", "#880E4F", "#3D0823"),
+    na.value = "#D6BFC9",
+    labels   = scales::label_number(scale_cut = scales::cut_short_scale()),
+    name     = "Cargo (m. ton)"
   ) +
   coord_sf(crs = 4326) +
   labs(
@@ -153,10 +153,14 @@ ggplot(tr_map) +
   ) +
   theme_void(base_family = "Inter") +
   theme(
-    plot.title    = element_text(family = "Playfair Display", face = "italic", size = 18, color = "#2A0E33"),
-    plot.subtitle = element_text(color = "#6A0F3D", size = 11),
-    plot.caption  = element_text(color = "#6A0F3D", size = 9, hjust = 0),
-    legend.position = "right",
+    plot.title       = element_text(family = "Playfair Display", face = "italic", size = 22,
+                                    color = "#3D0823", margin = margin(b = 6)),
+    plot.subtitle    = element_text(color = "#3D0823", size = 12, margin = margin(b = 10)),
+    plot.caption     = element_text(color = "#3D0823", size = 10, hjust = 0,
+                                    margin = margin(t = 8)),
+    legend.title     = element_text(color = "#3D0823", face = "bold", size = 11),
+    legend.text      = element_text(color = "#3D0823", size = 10),
+    legend.position  = "right",
     plot.background  = element_rect(fill = "#FFFAF7", color = NA),
     panel.background = element_rect(fill = "#FFFAF7", color = NA)
   )

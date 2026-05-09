@@ -5,7 +5,7 @@ toc: false
 ---
 
 :::: hero-block
-## *Six energies, one dataset.* {.shimmer}
+## [*Six energies, one dataset.*]{.shimmer}
 
 ::: tagline
 We took our name from Manifest's *"Arıyo"* — six of us, each carrying a member's energy into the project.
