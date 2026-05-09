@@ -2,52 +2,7 @@
 title: "Analysis"
 ---
 
-```{r}
-#| label: analysis-setup
-#| include: false
-suppressPackageStartupMessages({
-  library(dplyr)
-  library(tidyr)
-  library(stringr)
-  library(forcats)
-  library(scales)
-  library(ggplot2)
-  library(sf)
-  library(rnaturalearth)
-  library(knitr)
-  library(kableExtra)
-  library(sysfonts)
-  library(showtext)
-})
 
-# Pull Inter + Playfair Display from Google Fonts at runtime so the ggplot
-# typography matches the website. showtext_auto() routes ggplot text through
-# the showtext device.
-font_add_google("Inter",            "Inter")
-font_add_google("Playfair Display", "Playfair Display")
-showtext_auto()
-showtext_opts(dpi = 96)
-
-load("data/HNS_2022_clean.RData")
-
-theme_riyo <- function() {
-  theme_minimal(base_family = "Inter") +
-    theme(
-      plot.title       = element_text(family = "Playfair Display", face = "italic", size = 18, color = "#2A0E33"),
-      plot.subtitle    = element_text(color = "#6A0F3D", size = 11),
-      plot.caption     = element_text(color = "#6A0F3D", size = 9, hjust = 0),
-      axis.title       = element_text(color = "#2A0E33"),
-      axis.text        = element_text(color = "#2A0E33"),
-      panel.grid.minor = element_blank(),
-      panel.grid.major = element_line(color = scales::alpha("#C2185B", 0.12)),
-      plot.background  = element_rect(fill = "#FFFAF7", color = NA),
-      panel.background = element_rect(fill = "#FFFAF7", color = NA),
-      legend.background= element_rect(fill = "#FFFAF7", color = NA)
-    )
-}
-
-palette_riyo <- c("#C2185B", "#FF2D87", "#E5B43C", "#00C9D8", "#6A0F3D", "#2A0E33")
-```
 
 ::: key-takeaways
 ## Key Takeaways
@@ -61,8 +16,10 @@ palette_riyo <- c("#C2185B", "#FF2D87", "#E5B43C", "#00C9D8", "#6A0F3D", "#2A0E3
 
 ## 1. Overview of the dataset
 
-```{r}
-#| label: overview-stats
+
+::: {.cell}
+
+```{.r .cell-code}
 overview <- hns2022 |>
   summarise(
     n_records      = n(),
@@ -74,41 +31,43 @@ overview <- hns2022 |>
 overview
 ```
 
-```{r}
-#| label: overview-cards
-#| echo: false
-#| results: asis
-cat(sprintf('
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1 x 5
+  n_records n_ports n_facilities n_companies total_cargo_mt
+      <int>   <int>        <int>       <int>          <dbl>
+1       215      17           69         180     108894605.
+```
+
+
+:::
+:::
+
+
+
 ::: {.stat-grid}
 ::: {.stat-card}
-[%s]{.value}
+[215]{.value}
 [Records]{.label}
 :::
 ::: {.stat-card}
-[%d]{.value}
+[17]{.value}
 [Port authorities]{.label}
 :::
 ::: {.stat-card}
-[%d]{.value}
+[69]{.value}
 [Facilities]{.label}
 :::
 ::: {.stat-card}
-[%d]{.value}
+[180]{.value}
 [Companies (cleaned)]{.label}
 :::
 ::: {.stat-card}
-[%s M ton]{.value}
+[108.9 M ton]{.value}
 [Total 2022 cargo]{.label}
 :::
 :::
-',
-format(overview$n_records, big.mark = ","),
-overview$n_ports,
-overview$n_facilities,
-overview$n_companies,
-format(round(overview$total_cargo_mt / 1e6, 1), big.mark = ",")
-))
-```
 
 The dataset is a long table where each row pairs a **receiver company** with the **facility** that handled their cargo and the **regional port authority** that oversees that facility. The numeric column `cargo_mt` is what we'll be slicing in every direction below.
 
@@ -116,11 +75,10 @@ The dataset is a long table where each row pairs a **receiver company** with the
 
 Each port authority is mapped to its host province, and 2022 tonnage is summed accordingly. The darker the province, the heavier the load.
 
-```{r}
-#| label: turkey-map
-#| fig-width: 9
-#| fig-height: 5.5
-#| fig-cap: "Total hazardous cargo handled in 2022, by host province of the port authority. The darker the province, the heavier the load."
+
+::: {.cell}
+
+```{.r .cell-code}
 prov_totals <- hns2022 |>
   group_by(iso2, province) |>
   summarise(total_mt = sum(cargo_mt), .groups = "drop")
@@ -166,6 +124,12 @@ ggplot(tr_map) +
   )
 ```
 
+::: {.cell-output-display}
+![Total hazardous cargo handled in 2022, by host province of the port authority. The darker the province, the heavier the load.](analysis_files/figure-pdf/turkey-map-1.pdf){fig-pos='H'}
+:::
+:::
+
+
 
 The Aegean coast dominates **İzmir** alone hosts both the **Aliağa and İzmir** port authorities, making it the single heaviest concentration on the map. The Eastern Mediterranean follows close behind with **Adana's Ceyhan** terminals and **Hatay's İskenderun** accounting for much of the remainder. The Black Sea, Marmara and Antalya regions are present but noticeably lighter.
 
@@ -173,11 +137,10 @@ The Aegean coast dominates **İzmir** alone hosts both the **Aliağa and İzmir*
 
 Each company's 2022 tonnage is summed and plotted on a log scale to capture the full spread from the smallest handlers to the largest:
 
-```{r}
-#| label: density-companies
-#| fig-width: 9
-#| fig-height: 5
-#| fig-cap: "Density of total 2022 hazardous cargo tonnage per company (log scale). The cyan dashed line is the 20,000 ton policy threshold."
+
+::: {.cell}
+
+```{.r .cell-code}
 company_totals <- hns2022 |>
   group_by(company_clean) |>
   summarise(total_mt = sum(cargo_mt), .groups = "drop") |>
@@ -216,6 +179,12 @@ ggplot(company_totals, aes(x = total_mt)) +
   theme_riyo()
 ```
 
+::: {.cell-output-display}
+![Density of total 2022 hazardous cargo tonnage per company (log scale). The cyan dashed line is the 20,000 ton policy threshold.](analysis_files/figure-pdf/density-companies-1.pdf){fig-pos='H'}
+:::
+:::
+
+
 The pattern is hard to miss. Most companies cluster in the **10³–10⁴ ton** range, but a thin upper tail stretches well past **10⁷ tons** and that tail is where the real volume lives. On a linear axis, the smaller handlers would barely register; they outnumber the giants but are dwarfed by them in every other sense.
 ## 4. What would a tonnage levy actually cost? ( Hypothetical simulation)
 
@@ -224,8 +193,10 @@ The Directorate is considering tax/regulatory measures targeting companies that 
 
 > **Disclaimer.** ₺50/ton is illustrative — chosen for arithmetic clarity, not based on any draft policy. Treat absolute figures as proportions, not forecasts.
 
-```{r}
-#| label: tax-simulation
+
+::: {.cell}
+
+```{.r .cell-code}
 TAX_RATE_TL_PER_TON <- 50
 
 co_tax <- company_totals |>
@@ -249,11 +220,25 @@ threshold_summary <- co_tax |>
 threshold_summary
 ```
 
-```{r}
-#| label: threshold-share
-#| fig-width: 9
-#| fig-height: 4.5
-#| fig-cap: "How many companies exceed the threshold — and what share of total tonnage they account for."
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 1 x 8
+  n_total n_taxed pct_companies   total_mt taxed_mt pct_taxed_mt total_tax_TL
+    <int>   <int>         <dbl>      <dbl>    <dbl>        <dbl>        <dbl>
+1     180     107          59.4 108894605.       NA           NA  5416538302.
+# i 1 more variable: total_tax_billion <dbl>
+```
+
+
+:::
+:::
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
 share_df <- tibble(
   metric = factor(
     c("Companies", "Tonnage moved"),
@@ -289,11 +274,36 @@ ggplot(share_df, aes(x = metric, y = pct, fill = side)) +
   theme(legend.position = "top")
 ```
 
-```{r}
-#| label: top10-tax
-#| fig-width: 9
-#| fig-height: 6
-#| fig-cap: "Ten largest hypothetical taxpayers under a ₺50/ton levy on companies above 20,000 tons."
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_col()`).
+```
+
+
+:::
+
+::: {.cell-output .cell-output-stderr}
+
+```
+Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_text()`).
+```
+
+
+:::
+
+::: {.cell-output-display}
+![How many companies exceed the threshold — and what share of total tonnage they account for.](analysis_files/figure-pdf/threshold-share-1.pdf){fig-pos='H'}
+:::
+:::
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
 top10_tax <- co_tax |>
   filter(above_threshold) |>
   slice_max(tax_TL, n = 10) |>
@@ -326,12 +336,18 @@ ggplot(top10_tax, aes(x = label_short, y = tax_TL / 1e6)) +
   theme_riyo()
 ```
 
+::: {.cell-output-display}
+![Ten largest hypothetical taxpayers under a ₺50/ton levy on companies above 20,000 tons.](analysis_files/figure-pdf/top10-tax-1.pdf){fig-pos='H'}
+:::
+:::
+
+
 The top ten alone shoulder the **majority** of the bill. The next several dozen companies above the threshold pay meaningful but much smaller amounts; everyone else pays nothing under this design.
 
-```{r}
-#| label: tbl-top10-tax
-#| tbl-cap: "Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000 t)."
-#| code-fold: true
+
+::: {#tbl-top10-tax .cell tbl-cap='Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000 t).'}
+
+```{.r .cell-code  code-fold="true"}
 top10_tax |>
   transmute(
     Company = label_short,
@@ -342,15 +358,39 @@ top10_tax |>
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
+::: {.cell-output-display}
+
+\begin{longtable}[t]{lll}
+\toprule
+Company & Total tonnage & Hypothetical tax (₺ million)\\
+\midrule
+SOCAR BP TPAO CHEVRON ENI & 29,672,726 & 1,484\\
+IRAK HAMPETROLU SATIN ALAN MUHTELIF... & 21,922,189 & 1,096\\
+IZMIR ALIAGA RAFINERISI & 15,088,213 & 754\\
+STAR RAFINERI A S & 12,212,641 & 611\\
+BOTAS BORU HATLARI ILE PETROL TASIM... & 4,937,501 & 247\\
+\addlinespace
+BOTAS & 4,090,407 & 205\\
+OPET PETROLCULUK AS & 2,276,341 & 114\\
+PETROL OFISI A S & 2,141,034 & 107\\
+SHELL TURCAS PETROL A S & 1,265,607 & 63\\
+SOCAR & 1,173,424 & 59\\
+\bottomrule
+\end{longtable}
+
+
+:::
+:::
+
+
 ### Sensitivity to the threshold
 
 What if the threshold weren't 20,000 tons? The plot below traces how the **number of taxpayers** and the **share of tonnage taxed** move as we slide it.
 
-```{r}
-#| label: threshold-sensitivity
-#| fig-width: 9
-#| fig-height: 4.5
-#| fig-cap: "Sensitivity of the policy to the threshold value."
+
+::: {.cell}
+
+```{.r .cell-code}
 thresholds <- c(5e3, 1e4, 2e4, 5e4, 1e5, 2.5e5, 5e5, 1e6)
 
 sens <- tibble(threshold = thresholds) |>
@@ -381,15 +421,20 @@ ggplot(sens, aes(x = threshold)) +
   theme_riyo()
 ```
 
+::: {.cell-output-display}
+![Sensitivity of the policy to the threshold value.](analysis_files/figure-pdf/threshold-sensitivity-1.pdf){fig-pos='H'}
+:::
+:::
+
+
 The take-away: because the upper tail is so heavy, **moving the threshold up by an order of magnitude barely reduces tonnage coverage** — but it sharply reduces the *number* of companies subject to the policy. That's a useful lever for designers who want a high-impact, low-friction policy.
 
 ## 5. Where do these companies handle their cargo? — port-authority breakdown
 
-```{r}
-#| label: port-bar
-#| fig-width: 9
-#| fig-height: 5
-#| fig-cap: "Total hazardous cargo by port authority, 2022."
+
+::: {.cell}
+
+```{.r .cell-code}
 port_totals <- hns2022 |>
   group_by(port_authority_short) |>
   summarise(total_mt = sum(cargo_mt), .groups = "drop") |>
@@ -407,16 +452,20 @@ ggplot(port_totals, aes(x = fct_reorder(port_authority_short, total_mt), y = tot
   theme_riyo()
 ```
 
+::: {.cell-output-display}
+![Total hazardous cargo by port authority, 2022.](analysis_files/figure-pdf/port-bar-1.pdf){fig-pos='H'}
+:::
+:::
+
+
 ## 6. By coastal region: where does the spread sit?
 
 Aggregating to province level can let outliers (a single mega-refinery, a single LPG terminal) dominate the picture. Grouping ports by Türkiye's four coastal regions gives a more balanced view of how *typical* hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every leaf record in the dataset, plotted on a logarithmic axis to keep both small and very large shipments visible. The box itself shows the middle 50% of cargo movements, the line inside the box is the median, and the dots above the whiskers are outliers, often individual mega-shipments.
 
-```{r}
-#| label: region-boxplot
-#| fig-width: 9
-#| fig-height: 5.2
-#| fig-cap: "Distribution of leaf-record cargo tonnage across Türkiye's four coastal regions, 2022 (log-10 axis)."
 
+::: {.cell}
+
+```{.r .cell-code}
 region_map <- tibble::tribble(
   ~province,    ~region,
   "Balıkesir",  "Marmara",
@@ -462,6 +511,12 @@ ggplot(hns_region, aes(x = region, y = cargo_mt, fill = region)) +
   ) +
   theme_riyo()
 ```
+
+::: {.cell-output-display}
+![Distribution of leaf-record cargo tonnage across Türkiye's four coastal regions, 2022 (log-10 axis).](analysis_files/figure-pdf/region-boxplot-1.pdf){fig-pos='H'}
+:::
+:::
+
 
 The four regions tell different stories. Marmara and the Black Sea share the highest *typical* (median) cargo size per record, both sitting around the 50,000-ton mark, reflecting the steady volume of LPG and petroleum terminals around İstanbul, Tekirdağ, Samsun and Karadeniz Ereğli. The Mediterranean has the lowest median yet hosts the most extreme outliers, driven by a handful of mega-shipments at Ceyhan and İskenderun that sit far above the rest of the region. The Aegean's median falls in the middle, but its outliers (the Aliağa refinery and Star Aliağa terminal) are among the largest single records in the entire dataset. Across all four regions, the gap between an average shipment and the regional giant spans three to four orders of magnitude, which is the recurring shape of this dataset: a steady base of routine handling on top of a thin layer of exceptional volume.
 
