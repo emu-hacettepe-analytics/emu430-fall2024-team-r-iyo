@@ -2,4 +2,105 @@
 title: "Data"
 ---
 
-Data source: xxx
+```{r}
+#| label: data-setup
+#| include: false
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(knitr)
+  library(kableExtra)
+})
+load("data/HNS_2022_clean.RData")
+```
+
+## What is this dataset?
+
+The dataset captures **hazardous cargo (HNS — Hazardous and Noxious Substances) handled at Turkish ports during 2022**. It was published by the **Directorate General for Maritime Affairs** (T.C. Ulaştırma ve Altyapı Bakanlığı – Denizcilik Genel Müdürlüğü) and shared with us in the form of a pivot-table workbook prepared by the directorate's intern team.
+
+Each leaf record describes a single cargo movement at the resolution of:
+
+- the **regional port authority** (e.g., *Aliağa Bölge Liman Başkanlığı*),
+- the **facility** that handled the cargo (e.g., *Egegaz Aliağa LNG Terminal*),
+- the **receiver / final consignee company**,
+- the **cargo amount in metric tons**.
+
+### Why this dataset?
+
+We chose it for three reasons:
+
+1. **It's real, operational, and Turkish.** No simulated toy data — the patterns we surface are about the actual industrial geography of Türkiye's coastlines.
+2. **It supports policy questions.** The Maritime Affairs office has flagged firms handling more than 20,000 tons of hazardous cargo as candidates for upcoming tax/regulatory measures. The dataset lets us put numbers on that conversation.
+3. **It's multi-dimensional.** Company × facility × port authority gives us room for descriptive, geographic, and threshold-based analyses without leaving a single source.
+
+## Source
+
+> **Directorate General for Maritime Affairs.** *2022 Hazardous Cargo Handling Records.* Internal compilation, accessed via project supervisor.
+
+The original Excel workbook is bundled with this site as `data/HNS_2022.xlsx`, alongside the cleaned versions described below.
+
+## Preparation pipeline
+
+The raw workbook is a pivot-table export with three nested categorical levels (port authority → facility → company) and built-in subtotal rows ("Toplam …"). To analyse it we need a flat, tidy table.
+
+The full preprocessing script lives at `R/prepare_data.R`. In short, it:
+
+1. Reads the workbook with `readxl::read_excel()` and assigns clean column names: `port_authority`, `facility`, `company`, `cargo_mt`.
+2. **Drops every subtotal row** (`Toplam …`) at all three hierarchy levels.
+3. Drops rows where the company or tonnage is missing.
+4. Renames the `(boş)` placeholder facility (used at Güllük) to `Unspecified facility`.
+5. Builds a **`company_clean`** field — uppercased, ASCII-folded, punctuation-stripped — for grouping near-duplicate company names.
+6. Extracts a **`port_authority_short`** field by stripping the boilerplate "Bölge Liman Başkanlığı" suffix.
+7. Joins a **province + ISO-2 code** lookup so we can map each port authority onto a Turkish province for the choropleth.
+
+Re-run the script any time the source workbook changes:
+
+```r
+source("R/prepare_data.R")
+```
+
+It writes:
+
+- `data/HNS_2022_clean.RData` — the canonical R object.
+- `data/HNS_2022_clean.csv` — the same table in CSV (UTF-8) for inspection / sharing.
+
+## Download the cleaned data
+
+::: {.callout-tip}
+The cleaned R dataset is available here: [**HNS_2022_clean.RData**](data/HNS_2022_clean.RData)
+(also available as [HNS_2022_clean.csv](data/HNS_2022_clean.csv)).
+:::
+
+Loading it back is a one-liner:
+
+```r
+load("data/HNS_2022_clean.RData")  # creates a data frame called `hns2022`
+```
+
+## Schema at a glance
+
+| Column | Type | Description |
+|---|---|---|
+| `port_authority` | character | Full port-authority name (e.g., *Aliağa Bölge Liman Başkanlığı*) |
+| `port_authority_short` | character | Short form (e.g., *Aliağa*), used for joins |
+| `facility` | character | Facility / terminal that handled the cargo |
+| `company` | character | Receiver / consignee, as written in the source |
+| `company_clean` | character | Normalised company name for grouping near-duplicates |
+| `cargo_mt` | numeric | Cargo amount, in metric tons |
+| `province` | character | Host province of the port authority |
+| `iso2` | character | ISO 3166-2 code for the province (e.g., `TR-35`) |
+
+## A peek at the data
+
+```{r}
+#| label: tbl-head-rows
+#| tbl-cap: "First 10 rows of the cleaned dataset."
+#| code-fold: true
+hns2022 |>
+  dplyr::select(port_authority_short, facility, company, cargo_mt, province) |>
+  head(10) |>
+  kable(
+    col.names = c("Port authority", "Facility", "Company", "Cargo (m. ton)", "Province"),
+    format.args = list(big.mark = ",")
+  ) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```

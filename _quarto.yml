@@ -1,38 +1,57 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - "data/HNS_2022_clean.RData"
+    - "data/HNS_2022_clean.csv"
 
 website:
-  title: "xxx' Project Lab"
+  title: "R'ıyo"
+  description: "EMU430 data analytics project — hazardous cargo at Turkish ports, 2022."
   navbar:
     search: true
+    pinned: true
     left:
       - text: Home
         href: index.qmd
+      - text: Team
+        href: team.qmd
       - text: Data
         href: data.qmd
       - text: Analysis
         href: analysis.qmd
-
-            
-    tools:
+    right:
       - icon: github
-        href: https://twitter.com
-
+        href: https://github.com/EMU-Hacettepe-Analytics/emu430-fall2024-team-r-iyo
   page-navigation: true
   back-to-top-navigation: true
   page-footer:
-    center: "Hacettepe IE - EMU 430 - Fall 2024" 
+    center: "R'ıyo · Hacettepe Industrial Engineering · EMU430 · Spring 2026"
     border: true
+
 format:
   html:
-    toc: true
-    toc-location: left
-    theme: 
-      light: simplex 
-      dark: cyborg
+    theme:
+      - flatly
+      - theme.scss
     css: styles.css
-
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    code-fold: true
+    code-tools: true
+    code-summary: "Show code"
+    fig-align: center
+    fig-cap-location: bottom
+    df-print: paged
+    smooth-scroll: true
+    link-external-newwindow: true
+    anchor-sections: true
+  pdf:
+    documentclass: article
+    geometry: margin=2cm
+    toc: true
+    toc-depth: 3
+    fig-align: center
 
 editor: visual
-

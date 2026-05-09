@@ -1,0 +1,87 @@
+---
+title: "Team R'ıyo"
+sidebar: false
+toc: false
+---
+
+:::: hero-block
+## *Six energies, one dataset.* {.shimmer}
+
+::: tagline
+We took our name from Manifest's *"Arıyo"* — six of us, each carrying a member's energy into the project.
+:::
+::::
+
+> Each of us is paired with one Manifest member whose vibe matches the role we played in this project. Click the names to visit our personal EMU430 pages.
+
+::: member-card
+### Işıl Çakır
+
+[Hilal · the leader's poise]{.alter-ego}
+
+[Project leadCoordination]{.role}
+
+Işıl held the project together — from initial dataset selection through final-page polish. If something needed deciding, Işıl decided it; if a deadline was approaching, Işıl was already three days ahead. Calm, systematic, and impossible to fluster.
+
+[→ isilcakrr's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-isilcakrr/)
+:::
+
+::: member-card
+### Tuğçe Başaran
+
+[Lidya · the analyst's edge]{.alter-ego}
+
+[Data wranglingEDA]{.role}
+
+Tuğçe lives in the data. She was the one who first noticed how skewed the company-tonnage distribution was, and pushed us toward the log-scale density plot you'll see in the Analysis page. Sharp, precise, and never satisfied with a chart that's only *almost* right.
+
+[→ TugceBasaran's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-TugceBasaran/)
+:::
+
+::: member-card
+### Zeynep Kızkapan
+
+[Mina · the storyteller]{.alter-ego}
+
+[NarrativeWriting]{.role}
+
+Zeynep turned numbers into a story. The narrative voice across these pages — and the framing of the 20,000-ton question as a real policy question rather than just a stat — comes from her. Warm, clear, and quietly persuasive.
+
+[→ zeynepkizkapann's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-zeynepkizkapann/)
+:::
+
+::: member-card
+### Selin Atmaca
+
+[Sueda · the visual instinct]{.alter-ego}
+
+[DesignVisualization]{.role}
+
+Selin is why the site looks like *this* and not like another stock template. The colour palette, the gradients, the cyan pop you keep noticing on hover — that's her hand. Strong taste, gentle delivery.
+
+[→ selinatmaca-lab's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-selinatmaca-lab/)
+:::
+
+::: member-card
+### Tarık Buğra Birinci
+
+[Esin · the inspiration]{.alter-ego}
+
+[EngineeringR / Quarto]{.role}
+
+Tarık is our engineer. The choropleth, the data-cleaning script, the R chunks that turn an unruly pivot table into a tidy data frame — all his terrain. Whatever the toolchain throws at us, he picks it up and makes it work.
+
+[→ birincitarikbugra's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-birincitarikbugra/)
+:::
+
+::: member-card
+### Onur Can Gültekin
+
+[Zoktay · the closer]{.alter-ego}
+
+[ModelingTax simulation]{.role}
+
+Onur owned the policy-simulation arc. The hypothetical ₺50/ton tax, the threshold sensitivity, the "what if we changed the rate" sanity checks — those came from him. Pragmatic, fast, and a little bit ruthless when an idea isn't worth keeping.
+
+[→ onurcangultekin's page](https://emu-hacettepe-analytics.github.io/emu430-spring2026-onurcangultekin/)
+:::
