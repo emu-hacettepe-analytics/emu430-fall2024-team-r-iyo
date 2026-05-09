@@ -39,7 +39,7 @@ You can find each of us on our personal pages — head to [the **Team** page](te
 - [Tuğçe Başaran](https://emu-hacettepe-analytics.github.io/emu430-spring2026-TugceBasaran/) · *Lidya*
 - [Zeynep Kızkapan](https://emu-hacettepe-analytics.github.io/emu430-spring2026-zeynepkizkapann/) · *Mina*
 - [Selin Atmaca](https://emu-hacettepe-analytics.github.io/emu430-spring2026-selinatmaca-lab/) · *Sueda*
-- [Tarık Buğra Birinci](https://github.com/birincitarikbugra/emu430-spring2026-birincitarikbugra) · *Esin*
+- [Tarık Buğra Birinci](https://emu-hacettepe-analytics.github.io/emu430-spring2026-birincitarikbugra/) · *Esin*
 - [Onur Can Gültekin](https://emu-hacettepe-analytics.github.io/emu430-spring2026-onurcangultekin/) · *Zoktay*
 
 ::: {.key-takeaways}
