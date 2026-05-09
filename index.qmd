@@ -6,7 +6,7 @@ toc: false
 ---
 
 ::: {.hero-block}
-# [*R'ıyo*]{.shimmer}
+# *R'ıyo* {.shimmer}
 
 ::: {.tagline}
 **Where do Türkiye's hazardous cargoes go — and who's behind them?**
