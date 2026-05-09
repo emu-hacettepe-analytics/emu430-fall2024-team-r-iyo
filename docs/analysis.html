@@ -183,7 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#sensitivity-to-the-threshold" id="toc-sensitivity-to-the-threshold" class="nav-link" data-scroll-target="#sensitivity-to-the-threshold">Sensitivity to the threshold</a></li>
   </ul></li>
   <li><a href="#where-do-these-companies-handle-their-cargo" id="toc-where-do-these-companies-handle-their-cargo" class="nav-link" data-scroll-target="#where-do-these-companies-handle-their-cargo">5. Where do these companies handle their cargo?</a></li>
-  <li><a href="#by-coastal-region-where-does-the-spread-sit" id="toc-by-coastal-region-where-does-the-spread-sit" class="nav-link" data-scroll-target="#by-coastal-region-where-does-the-spread-sit">6. By coastal region: where does the spread sit?</a></li>
+  <li><a href="#regional-distribution-of-hazardous-cargo-activities" id="toc-regional-distribution-of-hazardous-cargo-activities" class="nav-link" data-scroll-target="#regional-distribution-of-hazardous-cargo-activities">6. Regional Distribution of Hazardous Cargo Activities</a></li>
   <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions">7. Conclusions</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="analysis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -659,9 +659,9 @@ Table&nbsp;1: Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000
 </div>
 </div>
 </section>
-<section id="by-coastal-region-where-does-the-spread-sit" class="level2">
-<h2 class="anchored" data-anchor-id="by-coastal-region-where-does-the-spread-sit">6. By coastal region: where does the spread sit?</h2>
-<p>Aggregating to province level can let outliers like a single megarefinery or a single LPG terminal dominate the picture. Grouping ports by Türkiye’s four coastal regions gives a more balanced view of how typical hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every record in the dataset on a logarithmic axis, keeping both small and very large shipments visible. The box itself covers the middle 50% of cargo movements, the line inside is the median and the dots beyond the whiskers are outliers, often individual megashipments.</p>
+<section id="regional-distribution-of-hazardous-cargo-activities" class="level2">
+<h2 class="anchored" data-anchor-id="regional-distribution-of-hazardous-cargo-activities">6. Regional Distribution of Hazardous Cargo Activities</h2>
+<p>Grouping ports by Türkiye’s four coastal regions gives a more balanced view of how typical hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every record in the dataset on a logarithmic axis, keeping both small and very large shipments visible. The box itself covers the middle 50% of cargo movements, the line inside is the median and the dots beyond the whiskers are outliers, often individual megashipments.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show code</summary>
@@ -719,7 +719,9 @@ Table&nbsp;1: Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000
 </div>
 </div>
 </div>
-<p>The four regions tell different stories. Marmara and the Black Sea share the highest <em>typical</em> (median) cargo size per record, both sitting around the 50,000 ton mark, reflecting the steady volume of LPG and petroleum terminals around İstanbul, Tekirdağ, Samsun and Karadeniz Ereğli. The Mediterranean has the lowest median yet hosts the most extreme outliers, driven by a handful of megashipments at Ceyhan and İskenderun that sit far above the rest of the region. The Aegean’s median falls in the middle but its outliers (the Aliağa refinery and Star Aliağa terminal) are among the largest single records in the entire dataset. Across all four regions, the gap between an average shipment and the regional giant spans three to four orders of magnitude which is the recurring shape of this dataset: <strong>a steady base of routine handling on top of a thin layer of exceptional volume.</strong></p>
+<p>The four coastal areas have different hazardous cargo patterns. Marmara and Black Sea coastlines are the two coastal areas with the highest average cargo volumes, with median cargo volumes of about 50,000 tons. This can be attributed to the continuous operations of petroleum terminals and liquefied petroleum gas (LPG) terminals found in locations like İstanbul, Tekirdağ, Samsun, and Karadeniz Ereğli.</p>
+<p>Mediterranean is the area with the lowest median cargo volume; however, it also holds some of the largest cargo volumes in the dataset. Operations at ports such as Ceyhan and İskenderun result in extraordinarily large cargo volumes when compared to the other regions.</p>
+<p>The Aegean area is in between the above scenarios where there are medium-sized cargo volumes, though some facilities like the Aliağa refinery and Star Aliağa terminal hold some of the highest cargo volume records in the dataset.</p>
 </section>
 <section id="conclusions" class="level2">
 <h2 class="anchored" data-anchor-id="conclusions">7. Conclusions</h2>
@@ -1596,9 +1598,9 @@ Table&nbsp;1: Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000
 <span id="cb11-423"><a href="#cb11-423" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_riyo</span>()</span>
 <span id="cb11-424"><a href="#cb11-424" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-425"><a href="#cb11-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-426"><a href="#cb11-426" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. By coastal region: where does the spread sit?</span></span>
+<span id="cb11-426"><a href="#cb11-426" aria-hidden="true" tabindex="-1"></a><span class="fu">## 6. Regional Distribution of Hazardous Cargo Activities</span></span>
 <span id="cb11-427"><a href="#cb11-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-428"><a href="#cb11-428" aria-hidden="true" tabindex="-1"></a>Aggregating to province level can let outliers like a single megarefinery or a single LPG terminal dominate the picture. Grouping ports by Türkiye's four coastal regions gives a more balanced view of how typical hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every record in the dataset on a logarithmic axis, keeping both small and very large shipments visible. The box itself covers the middle 50% of cargo movements, the line inside is the median and the dots beyond the whiskers are outliers, often individual megashipments.</span>
+<span id="cb11-428"><a href="#cb11-428" aria-hidden="true" tabindex="-1"></a>Grouping ports by Türkiye's four coastal regions gives a more balanced view of how typical hazardous cargo movements compare across the country, alongside the giants. The box plot below shows every record in the dataset on a logarithmic axis, keeping both small and very large shipments visible. The box itself covers the middle 50% of cargo movements, the line inside is the median and the dots beyond the whiskers are outliers, often individual megashipments.</span>
 <span id="cb11-429"><a href="#cb11-429" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-432"><a href="#cb11-432" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb11-433"><a href="#cb11-433" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: region-boxplot</span></span>
@@ -1652,16 +1654,20 @@ Table&nbsp;1: Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000
 <span id="cb11-481"><a href="#cb11-481" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_riyo</span>()</span>
 <span id="cb11-482"><a href="#cb11-482" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-483"><a href="#cb11-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-484"><a href="#cb11-484" aria-hidden="true" tabindex="-1"></a>The four regions tell different stories. Marmara and the Black Sea share the highest *typical* (median) cargo size per record, both sitting around the 50,000 ton mark, reflecting the steady volume of LPG and petroleum terminals around İstanbul, Tekirdağ, Samsun and Karadeniz Ereğli. The Mediterranean has the lowest median yet hosts the most extreme outliers, driven by a handful of megashipments at Ceyhan and İskenderun that sit far above the rest of the region. The Aegean's median falls in the middle but its outliers (the Aliağa refinery and Star Aliağa terminal) are among the largest single records in the entire dataset. Across all four regions, the gap between an average shipment and the regional giant spans three to four orders of magnitude which is the recurring shape of this dataset: **a steady base of routine handling on top of a thin layer of exceptional volume.**</span>
+<span id="cb11-484"><a href="#cb11-484" aria-hidden="true" tabindex="-1"></a>The four coastal areas have different hazardous cargo patterns. Marmara and Black Sea coastlines are the two coastal areas with the highest average cargo volumes, with median cargo volumes of about 50,000 tons. This can be attributed to the continuous operations of petroleum terminals and liquefied petroleum gas (LPG) terminals found in locations like İstanbul, Tekirdağ, Samsun, and Karadeniz Ereğli.</span>
 <span id="cb11-485"><a href="#cb11-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-486"><a href="#cb11-486" aria-hidden="true" tabindex="-1"></a><span class="fu">## 7. Conclusions</span></span>
+<span id="cb11-486"><a href="#cb11-486" aria-hidden="true" tabindex="-1"></a>Mediterranean is the area with the lowest median cargo volume; however, it also holds some of the largest cargo volumes in the dataset. Operations at ports such as Ceyhan and İskenderun result in extraordinarily large cargo volumes when compared to the other regions.</span>
 <span id="cb11-487"><a href="#cb11-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-488"><a href="#cb11-488" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Geography:** Türkiye's hazardous cargo handling is **not evenly distributed**. A small set of provinces driven by refining and large export terminals, dominates national volume.</span>
-<span id="cb11-489"><a href="#cb11-489" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Industry structure:** The market is a **classic heavy tailed distribution**. Many small handlers, a few giants moving most of the tonnage.</span>
-<span id="cb11-490"><a href="#cb11-490" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Policy implication:** Because volume is so concentrated, a tonnagebased levy is **administratively narrow.** It would touch a minority of companies but capture most of the activity. That makes it both **easy to enforce** and **politically charged**.</span>
-<span id="cb11-491"><a href="#cb11-491" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sensitivity:** Moving the threshold from 20,000 to 100,000 or 200,000 tons would *not* meaningfully reduce coverage of total tonnage but would *significantly* reduce the number of regulated firms a real lever for policy designers.</span>
-<span id="cb11-492"><a href="#cb11-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-493"><a href="#cb11-493" aria-hidden="true" tabindex="-1"></a>Visit our <span class="co">[</span><span class="ot">Data page</span><span class="co">](data.qmd)</span> for documentation and the cleaned dataset and the <span class="co">[</span><span class="ot">Team page</span><span class="co">](team.qmd)</span> to meet the people behind it.</span>
+<span id="cb11-488"><a href="#cb11-488" aria-hidden="true" tabindex="-1"></a>The Aegean area is in between the above scenarios where there are medium-sized cargo volumes, though some facilities like the Aliağa refinery and Star Aliağa terminal hold some of the highest cargo volume records in the dataset.</span>
+<span id="cb11-489"><a href="#cb11-489" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-490"><a href="#cb11-490" aria-hidden="true" tabindex="-1"></a><span class="fu">## 7. Conclusions</span></span>
+<span id="cb11-491"><a href="#cb11-491" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-492"><a href="#cb11-492" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Geography:** Türkiye's hazardous cargo handling is **not evenly distributed**. A small set of provinces driven by refining and large export terminals, dominates national volume.</span>
+<span id="cb11-493"><a href="#cb11-493" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Industry structure:** The market is a **classic heavy tailed distribution**. Many small handlers, a few giants moving most of the tonnage.</span>
+<span id="cb11-494"><a href="#cb11-494" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Policy implication:** Because volume is so concentrated, a tonnagebased levy is **administratively narrow.** It would touch a minority of companies but capture most of the activity. That makes it both **easy to enforce** and **politically charged**.</span>
+<span id="cb11-495"><a href="#cb11-495" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Sensitivity:** Moving the threshold from 20,000 to 100,000 or 200,000 tons would *not* meaningfully reduce coverage of total tonnage but would *significantly* reduce the number of regulated firms a real lever for policy designers.</span>
+<span id="cb11-496"><a href="#cb11-496" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-497"><a href="#cb11-497" aria-hidden="true" tabindex="-1"></a>Visit our <span class="co">[</span><span class="ot">Data page</span><span class="co">](data.qmd)</span> for documentation and the cleaned dataset and the <span class="co">[</span><span class="ot">Team page</span><span class="co">](team.qmd)</span> to meet the people behind it.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
