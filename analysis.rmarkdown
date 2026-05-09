@@ -1,0 +1,407 @@
+---
+title: "Analysis"
+---
+
+```{r}
+#| label: analysis-setup
+#| include: false
+suppressPackageStartupMessages({
+  library(dplyr)
+  library(tidyr)
+  library(stringr)
+  library(forcats)
+  library(scales)
+  library(ggplot2)
+  library(sf)
+  library(rnaturalearth)
+  library(knitr)
+  library(kableExtra)
+  library(sysfonts)
+  library(showtext)
+})
+
+# Pull Inter + Playfair Display from Google Fonts at runtime so the ggplot
+# typography matches the website. showtext_auto() routes ggplot text through
+# the showtext device.
+font_add_google("Inter",            "Inter")
+font_add_google("Playfair Display", "Playfair Display")
+showtext_auto()
+showtext_opts(dpi = 96)
+
+load("data/HNS_2022_clean.RData")
+
+theme_riyo <- function() {
+  theme_minimal(base_family = "Inter") +
+    theme(
+      plot.title       = element_text(family = "Playfair Display", face = "italic", size = 18, color = "#2A0E33"),
+      plot.subtitle    = element_text(color = "#6A0F3D", size = 11),
+      plot.caption     = element_text(color = "#6A0F3D", size = 9, hjust = 0),
+      axis.title       = element_text(color = "#2A0E33"),
+      axis.text        = element_text(color = "#2A0E33"),
+      panel.grid.minor = element_blank(),
+      panel.grid.major = element_line(color = scales::alpha("#C2185B", 0.12)),
+      plot.background  = element_rect(fill = "#FFFAF7", color = NA),
+      panel.background = element_rect(fill = "#FFFAF7", color = NA),
+      legend.background= element_rect(fill = "#FFFAF7", color = NA)
+    )
+}
+
+palette_riyo <- c("#C2185B", "#FF2D87", "#E5B43C", "#00C9D8", "#6A0F3D", "#2A0E33")
+```
+
+::: key-takeaways
+## Key Takeaways
+
+-   The dataset includes **215 cargo movements** from **17 port authorities, 69 facilities and 180 different companies** with approximately 109 million metric tons of hazardous cargo reported in 2022. Geographic concentration is striking **İzmir (Aliağa), Adana (Ceyhan)** and **Hatay (İskenderun)** dominate the volume while most other provinces handle only a sliver of the total.
+
+-   **Company-level tonnage is deeply uneven.** The bulk of receivers sit in the 10³–10⁴ ton range yet a handful of operators push well past 10⁷ and that gap matters enormously for policy. Just **107 of the 180 companies** clear the 20,000 ton threshold but together they move roughly **99.5% of all hazardous cargo.** Wide by headcount, narrow by liability.
+
+-   A hypothetical **₺50/ton levy** on those threshold crossing companies would bring in around **₺5.4 billion** most of it coming from the top ten handlers alone.
+:::
+
+## 1. Overview of the dataset
+
+```{r}
+#| label: overview-stats
+overview <- hns2022 |>
+  summarise(
+    n_records      = n(),
+    n_ports        = n_distinct(port_authority_short),
+    n_facilities   = n_distinct(facility),
+    n_companies    = n_distinct(company_clean),
+    total_cargo_mt = sum(cargo_mt)
+  )
+overview
+```
+
+```{r}
+#| label: overview-cards
+#| echo: false
+#| results: asis
+cat(sprintf('
+::: {.stat-grid}
+::: {.stat-card}
+[%s]{.value}
+[Records]{.label}
+:::
+::: {.stat-card}
+[%d]{.value}
+[Port authorities]{.label}
+:::
+::: {.stat-card}
+[%d]{.value}
+[Facilities]{.label}
+:::
+::: {.stat-card}
+[%d]{.value}
+[Companies (cleaned)]{.label}
+:::
+::: {.stat-card}
+[%s M ton]{.value}
+[Total 2022 cargo]{.label}
+:::
+:::
+',
+format(overview$n_records, big.mark = ","),
+overview$n_ports,
+overview$n_facilities,
+overview$n_companies,
+format(round(overview$total_cargo_mt / 1e6, 1), big.mark = ",")
+))
+```
+
+The dataset is a long table where each row pairs a **receiver company** with the **facility** that handled their cargo and the **regional port authority** that oversees that facility. The numeric column `cargo_mt` is what we'll be slicing in every direction below.
+
+## 2. Where is hazardous cargo concentrated? 
+
+Each port authority is mapped to its host province, and 2022 tonnage is summed accordingly. The darker the province, the heavier the load.
+
+```{r}
+#| label: turkey-map
+#| fig-width: 9
+#| fig-height: 5.5
+#| fig-cap: "Total hazardous cargo handled in 2022, by host province of the port authority. The darker the province, the heavier the load."
+prov_totals <- hns2022 |>
+  group_by(iso2, province) |>
+  summarise(total_mt = sum(cargo_mt), .groups = "drop")
+
+tr_states <- ne_states(country = "Turkey", returnclass = "sf")
+
+if ("iso_3166_2" %in% names(tr_states)) {
+  tr_map <- tr_states |>
+    left_join(prov_totals, by = c("iso_3166_2" = "iso2"))
+} else {
+  norm <- function(x) tolower(stringi::stri_trans_general(x, "Any-Latin; Latin-ASCII"))
+  tr_map <- tr_states |>
+    mutate(name_n = norm(name)) |>
+    left_join(prov_totals |> mutate(name_n = norm(province)), by = "name_n")
+}
+
+ggplot(tr_map) +
+  geom_sf(aes(fill = total_mt), color = "white", linewidth = 0.35) +
+  scale_fill_gradientn(
+    colours  = c("#F06292", "#EC407A", "#E91E63", "#C2185B", "#880E4F", "#3D0823"),
+    na.value = "#9C8D88",
+    labels   = scales::label_number(scale_cut = scales::cut_short_scale()),
+    name     = "Cargo (m. ton)"
+  ) +
+  coord_sf(crs = 4326) +
+  labs(
+    title    = "Türkiye's hazardous cargo, 2022",
+    subtitle = "Provinces are filled by the total tonnage handled at port authorities they host. Grey = no port authority in that province.",
+    caption  = "Source: Directorate General for Maritime Affairs, 2022. Author calculations."
+  ) +
+  theme_void(base_family = "Inter") +
+  theme(
+    plot.title       = element_text(family = "Playfair Display", face = "italic", size = 22,
+                                    color = "#3D0823", margin = margin(b = 6)),
+    plot.subtitle    = element_text(color = "#3D0823", size = 12, margin = margin(b = 10)),
+    plot.caption     = element_text(color = "#3D0823", size = 10, hjust = 0,
+                                    margin = margin(t = 8)),
+    legend.title     = element_text(color = "#3D0823", face = "bold", size = 11),
+    legend.text      = element_text(color = "#3D0823", size = 10),
+    legend.position  = "right",
+    plot.background  = element_rect(fill = "#FFFAF7", color = NA),
+    panel.background = element_rect(fill = "#FFFAF7", color = NA)
+  )
+```
+
+
+The Aegean coast dominates **İzmir** alone hosts both the **Aliağa and İzmir** port authorities, making it the single heaviest concentration on the map. The Eastern Mediterranean follows close behind with **Adana's Ceyhan** terminals and **Hatay's İskenderun** accounting for much of the remainder. The Black Sea, Marmara and Antalya regions are present but noticeably lighter.
+
+## 3. How is cargo distributed across companies? 
+
+Each company's 2022 tonnage is summed and plotted on a log scale to capture the full spread from the smallest handlers to the largest:
+
+```{r}
+#| label: density-companies
+#| fig-width: 9
+#| fig-height: 5
+#| fig-cap: "Density of total 2022 hazardous cargo tonnage per company (log scale). The cyan dashed line is the 20,000 ton policy threshold."
+company_totals <- hns2022 |>
+  group_by(company_clean) |>
+  summarise(total_mt = sum(cargo_mt), .groups = "drop") |>
+  filter(total_mt > 0)
+
+ggplot(company_totals, aes(x = total_mt)) +
+  geom_density(fill = "#FF80B0", alpha = 0.55, color = "#C2185B", linewidth = 1) +
+  geom_vline(xintercept = 20000, linetype = "dashed", color = "#00C9D8", linewidth = 1) +
+  annotate(
+    "label",
+    x = 20000, y = Inf,
+    label = "20,000-ton threshold",
+    vjust = 1.5, hjust = -0.05,
+    color = "#00838F", fill = "#FFFAF7",
+    label.size = 0,
+    fontface = "bold"
+  ) +
+  scale_x_log10(labels = scales::label_number(scale_cut = scales::cut_short_scale())) +
+  labs(
+    title    = "Most companies are small. A handful are enormous.",
+    subtitle = "Density of company-level total tonnage in 2022 (log-10 axis).",
+    x = "Total cargo per company (metric tons, log scale)",
+    y = "Density",
+    caption = "Each company aggregated by its cleaned, deduplicated name."
+  ) +
+  theme_riyo()
+```
+
+The pattern is hard to miss. Most companies cluster in the **10³–10⁴ ton** range, but a thin upper tail stretches well past **10⁷ tons** and that tail is where the real volume lives. On a linear axis, the smaller handlers would barely register; they outnumber the giants but are dwarfed by them in every other sense.
+## 4. What would a tonnage levy actually cost? ( Hypothetical simulation)
+
+
+The Directorate is considering tax/regulatory measures targeting companies that exceed **20,000 tons** of hazardous cargo per year. To put a number on what that would mean, we apply a hypothetical **₺50 per ton** levy on the *full* tonnage of any company that crosses the threshold.
+
+> **Disclaimer.** ₺50/ton is illustrative — chosen for arithmetic clarity, not based on any draft policy. Treat absolute figures as proportions, not forecasts.
+
+```{r}
+#| label: tax-simulation
+TAX_RATE_TL_PER_TON <- 50
+
+co_tax <- company_totals |>
+  mutate(
+    above_threshold = total_mt > 20000,
+    tax_TL = if_else(above_threshold, total_mt * TAX_RATE_TL_PER_TON, 0)
+  )
+
+threshold_summary <- co_tax |>
+  summarise(
+    n_total          = n(),
+    n_taxed          = sum(above_threshold),
+    pct_companies    = mean(above_threshold) * 100,
+    total_mt         = sum(total_mt),
+    taxed_mt         = sum(total_mt[above_threshold]),
+    pct_taxed_mt     = sum(total_mt[above_threshold]) / sum(total_mt) * 100,
+    total_tax_TL     = sum(tax_TL),
+    total_tax_billion= sum(tax_TL) / 1e9
+  )
+
+threshold_summary
+```
+
+```{r}
+#| label: threshold-share
+#| fig-width: 9
+#| fig-height: 4.5
+#| fig-cap: "How many companies exceed the threshold — and what share of total tonnage they account for."
+share_df <- tibble(
+  metric = factor(
+    c("Companies", "Tonnage moved"),
+    levels = c("Companies", "Tonnage moved")
+  ),
+  above  = c(threshold_summary$pct_companies,           threshold_summary$pct_taxed_mt),
+  below  = c(100 - threshold_summary$pct_companies, 100 - threshold_summary$pct_taxed_mt)
+) |>
+  pivot_longer(c(above, below), names_to = "side", values_to = "pct") |>
+  mutate(side = factor(side, levels = c("below", "above"),
+                       labels = c("Below 20k tons", "Above 20k tons")))
+
+ggplot(share_df, aes(x = metric, y = pct, fill = side)) +
+  geom_col(width = 0.55) +
+  geom_text(
+    aes(label = sprintf("%.0f%%", pct)),
+    position = position_stack(vjust = 0.5),
+    color = "white", fontface = "bold", size = 5,
+    family = "Inter"
+  ) +
+  scale_fill_manual(values = c("Below 20k tons" = "#FFC1D8", "Above 20k tons" = "#C2185B")) +
+  coord_flip() +
+  labs(
+    title    = "Wide net, top-heavy bill.",
+    subtitle = sprintf(
+      "%.0f%% of companies cross the 20,000-ton threshold — and together they account for ~%.1f%% of all hazardous tonnage.",
+      threshold_summary$pct_companies, threshold_summary$pct_taxed_mt
+    ),
+    x = NULL, y = "Share (%)", fill = NULL,
+    caption = "₺50/ton hypothetical levy applied to crossing companies only."
+  ) +
+  theme_riyo() +
+  theme(legend.position = "top")
+```
+
+```{r}
+#| label: top10-tax
+#| fig-width: 9
+#| fig-height: 6
+#| fig-cap: "Ten largest hypothetical taxpayers under a ₺50/ton levy on companies above 20,000 tons."
+top10_tax <- co_tax |>
+  filter(above_threshold) |>
+  slice_max(tax_TL, n = 10) |>
+  mutate(
+    label_short = str_trunc(company_clean, 38),
+    label_short = fct_reorder(label_short, tax_TL)
+  )
+
+ggplot(top10_tax, aes(x = label_short, y = tax_TL / 1e6)) +
+  geom_col(fill = "#C2185B", width = 0.7) +
+  geom_text(
+    aes(label = scales::label_number(accuracy = 1, big.mark = ",")(tax_TL / 1e6)),
+    hjust = -0.15, color = "#2A0E33", family = "Inter", fontface = "bold"
+  ) +
+  coord_flip() +
+  scale_y_continuous(
+    labels = scales::label_number(suffix = "M ₺"),
+    expand = expansion(mult = c(0, 0.18))
+  ) +
+  labs(
+    title    = "Where the bill would land — top 10 hypothetical taxpayers",
+    subtitle = sprintf(
+      "Total industry liability ≈ ₺%.1f billion · top 10 share ≈ %.0f%%",
+      threshold_summary$total_tax_billion,
+      sum(top10_tax$tax_TL) / threshold_summary$total_tax_TL * 100
+    ),
+    x = NULL, y = "Hypothetical tax (million ₺)",
+    caption = "Hypothetical levy: ₺50 per ton on companies above 20,000 tons of 2022 hazardous cargo."
+  ) +
+  theme_riyo()
+```
+
+The top ten alone shoulder the **majority** of the bill. The next several dozen companies above the threshold pay meaningful but much smaller amounts; everyone else pays nothing under this design.
+
+```{r}
+#| label: tbl-top10-tax
+#| tbl-cap: "Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000 t)."
+#| code-fold: true
+top10_tax |>
+  transmute(
+    Company = label_short,
+    `Total tonnage` = scales::label_number(big.mark = ",", accuracy = 1)(total_mt),
+    `Hypothetical tax (₺ million)` = scales::label_number(big.mark = ",", accuracy = 1)(tax_TL / 1e6)
+  ) |>
+  kable() |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+### Sensitivity to the threshold
+
+What if the threshold weren't 20,000 tons? The plot below traces how the **number of taxpayers** and the **share of tonnage taxed** move as we slide it.
+
+```{r}
+#| label: threshold-sensitivity
+#| fig-width: 9
+#| fig-height: 4.5
+#| fig-cap: "Sensitivity of the policy to the threshold value."
+thresholds <- c(5e3, 1e4, 2e4, 5e4, 1e5, 2.5e5, 5e5, 1e6)
+
+sens <- tibble(threshold = thresholds) |>
+  rowwise() |>
+  mutate(
+    n_taxed     = sum(company_totals$total_mt > threshold),
+    share_mt    = sum(company_totals$total_mt[company_totals$total_mt > threshold]) /
+                  sum(company_totals$total_mt) * 100
+  ) |>
+  ungroup()
+
+ggplot(sens, aes(x = threshold)) +
+  geom_line(aes(y = share_mt), color = "#C2185B", linewidth = 1.2) +
+  geom_point(aes(y = share_mt), color = "#C2185B", size = 3) +
+  geom_text(
+    aes(y = share_mt, label = sprintf("n=%d", n_taxed)),
+    vjust = -1, color = "#00838F", fontface = "bold", size = 3.4, family = "Inter"
+  ) +
+  scale_x_log10(labels = scales::label_number(big.mark = ",", scale_cut = scales::cut_short_scale())) +
+  scale_y_continuous(limits = c(0, 105), labels = function(x) paste0(x, "%")) +
+  labs(
+    title    = "How sharp is the cliff at 20,000 tons?",
+    subtitle = "Even a 5x or 10x stricter threshold barely loses tonnage coverage — the giants dominate.",
+    x = "Threshold (metric tons, log scale)",
+    y = "Share of total tonnage above threshold",
+    caption = "Annotations show the number of companies caught at each threshold."
+  ) +
+  theme_riyo()
+```
+
+The take-away: because the upper tail is so heavy, **moving the threshold up by an order of magnitude barely reduces tonnage coverage** — but it sharply reduces the *number* of companies subject to the policy. That's a useful lever for designers who want a high-impact, low-friction policy.
+
+## 5. Where do these companies handle their cargo? — port-authority breakdown
+
+```{r}
+#| label: port-bar
+#| fig-width: 9
+#| fig-height: 5
+#| fig-cap: "Total hazardous cargo by port authority, 2022."
+port_totals <- hns2022 |>
+  group_by(port_authority_short) |>
+  summarise(total_mt = sum(cargo_mt), .groups = "drop") |>
+  arrange(desc(total_mt))
+
+ggplot(port_totals, aes(x = fct_reorder(port_authority_short, total_mt), y = total_mt / 1e6)) +
+  geom_col(fill = "#FF2D87", width = 0.65) +
+  coord_flip() +
+  scale_y_continuous(labels = scales::label_number(suffix = " M ton")) +
+  labs(
+    title = "Aliağa and Ceyhan run away with it.",
+    subtitle = "Total hazardous cargo handled in 2022, by regional port authority.",
+    x = NULL, y = "Total cargo (million metric tons)"
+  ) +
+  theme_riyo()
+```
+
+## 6. Conclusions
+
+-   **Geography:** Türkiye's hazardous cargo handling is **not evenly distributed**. A small set of provinces — driven by refining and large export terminals — dominates national volume.
+-   **Industry structure:** The market is a **classic heavy-tailed distribution**. Many small handlers, a few giants moving most of the tonnage.
+-   **Policy implication:** Because volume is so concentrated, a tonnage-based levy is **administratively narrow** — it would touch a minority of companies but capture most of the activity. That makes it both **easy to enforce** and **politically charged**.
+-   **Sensitivity:** Moving the threshold from 20,000 to 100,000 or 200,000 tons would *not* meaningfully reduce coverage of total tonnage but would *significantly* reduce the number of regulated firms — a real lever for policy designers.
+
+Visit our [Data page](data.qmd) for documentation and the cleaned dataset, and the [Team page](team.qmd) to meet the people behind it.
