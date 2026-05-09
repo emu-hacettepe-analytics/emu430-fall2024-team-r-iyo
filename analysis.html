@@ -178,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#overview-of-the-dataset" id="toc-overview-of-the-dataset" class="nav-link" data-scroll-target="#overview-of-the-dataset">1. Overview of the dataset</a></li>
   <li><a href="#where-is-hazardous-cargo-concentrated" id="toc-where-is-hazardous-cargo-concentrated" class="nav-link" data-scroll-target="#where-is-hazardous-cargo-concentrated">2. Where is hazardous cargo concentrated?</a></li>
   <li><a href="#how-is-cargo-distributed-across-companies" id="toc-how-is-cargo-distributed-across-companies" class="nav-link" data-scroll-target="#how-is-cargo-distributed-across-companies">3. How is cargo distributed across companies?</a></li>
-  <li><a href="#what-would-a-tonnage-levy-actually-cost-hypothetical-simulation" id="toc-what-would-a-tonnage-levy-actually-cost-hypothetical-simulation" class="nav-link" data-scroll-target="#what-would-a-tonnage-levy-actually-cost-hypothetical-simulation">4. What would a tonnage levy actually cost? ( Hypothetical simulation)</a>
+  <li><a href="#simulated-tax-impact-based-on-hazardous-cargo-handling-amounts" id="toc-simulated-tax-impact-based-on-hazardous-cargo-handling-amounts" class="nav-link" data-scroll-target="#simulated-tax-impact-based-on-hazardous-cargo-handling-amounts">4. Simulated Tax Impact Based on Hazardous Cargo Handling Amounts</a>
   <ul class="collapse">
   <li><a href="#sensitivity-to-the-threshold" id="toc-sensitivity-to-the-threshold" class="nav-link" data-scroll-target="#sensitivity-to-the-threshold">Sensitivity to the threshold</a></li>
   </ul></li>
@@ -365,8 +365,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The pattern is hard to miss. Most companies cluster in the <strong>10³–10⁴ ton</strong> range, but a thin upper tail stretches well past <strong>10⁷ tons</strong> and that tail is where the real volume lives. On a linear axis, the smaller handlers would barely register; they outnumber the giants but are dwarfed by them in every other sense.</p>
 </section>
-<section id="what-would-a-tonnage-levy-actually-cost-hypothetical-simulation" class="level2">
-<h2 class="anchored" data-anchor-id="what-would-a-tonnage-levy-actually-cost-hypothetical-simulation">4. What would a tonnage levy actually cost? ( Hypothetical simulation)</h2>
+<section id="simulated-tax-impact-based-on-hazardous-cargo-handling-amounts" class="level2">
+<h2 class="anchored" data-anchor-id="simulated-tax-impact-based-on-hazardous-cargo-handling-amounts">4. Simulated Tax Impact Based on Hazardous Cargo Handling Amounts</h2>
 <p>The Directorate is weighing tax and regulatory measures for companies that move more than <strong>20,000 tons</strong> of hazardous cargo in a given year. To get a sense of the scale, we run a simple simulation: a hypothetical <strong>₺50 per ton</strong> levy applied to the full tonnage of any company that crosses that line.</p>
 <blockquote class="blockquote">
 <p><strong>Note.</strong> The ₺50/ton figure is illustrative picked for ease of calculation, not drawn from any draft policy. The totals below are best read as proportions, not forecasts.</p>
@@ -625,7 +625,7 @@ Table&nbsp;1: Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000
 </div>
 </div>
 </div>
-<p>The take away because the upper tail is so heavy, moving the threshold up by an order of magnitude barely reduces tonnage coverage but it sharply reduces the number of companies subject to the policy. That’s a useful lever for designers who want a high impact, low friction policy.</p>
+<p>Because the upper tail of the distribution is very large, increasing the threshold significantly reduces the number of companies affected by the policy, while the total amount of covered cargo decreases only slightly. This may help policymakers design a regulation that targets major cargo handlers without affecting too many companies.</p>
 </section>
 </section>
 <section id="where-do-these-companies-handle-their-cargo" class="level2">
@@ -1405,7 +1405,7 @@ Table&nbsp;1: Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000
 <span id="cb11-220"><a href="#cb11-220" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-221"><a href="#cb11-221" aria-hidden="true" tabindex="-1"></a>The pattern is hard to miss. Most companies cluster in the **10³–10⁴ ton** range, but a thin upper tail stretches well past **10⁷ tons** and that tail is where the real volume lives. On a linear axis, the smaller handlers would barely register; they outnumber the giants but are dwarfed by them in every other sense.</span>
 <span id="cb11-222"><a href="#cb11-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. What would a tonnage levy actually cost? ( Hypothetical simulation)</span></span>
+<span id="cb11-223"><a href="#cb11-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4. Simulated Tax Impact Based on Hazardous Cargo Handling Amounts</span></span>
 <span id="cb11-224"><a href="#cb11-224" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-225"><a href="#cb11-225" aria-hidden="true" tabindex="-1"></a>The Directorate is weighing tax and regulatory measures for companies that move more than **20,000 tons** of hazardous cargo in a given year. To get a sense of the scale, we run a simple simulation: a hypothetical **₺50 per ton** levy applied to the full tonnage of any company that crosses that line.</span>
 <span id="cb11-226"><a href="#cb11-226" aria-hidden="true" tabindex="-1"></a></span>
@@ -1570,7 +1570,7 @@ Table&nbsp;1: Top 10 hypothetical taxpayers (₺50/ton on companies above 20,000
 <span id="cb11-395"><a href="#cb11-395" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_riyo</span>()</span>
 <span id="cb11-396"><a href="#cb11-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb11-397"><a href="#cb11-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a>The take away because the upper tail is so heavy, moving the threshold up by an order of magnitude barely reduces tonnage coverage but it sharply reduces the number of companies subject to the policy. That's a useful lever for designers who want a high impact, low friction policy.</span>
+<span id="cb11-398"><a href="#cb11-398" aria-hidden="true" tabindex="-1"></a>Because the upper tail of the distribution is very large, increasing the threshold significantly reduces the number of companies affected by the policy, while the total amount of covered cargo decreases only slightly. This may help policymakers design a regulation that targets major cargo handlers without affecting too many companies.</span>
 <span id="cb11-399"><a href="#cb11-399" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-400"><a href="#cb11-400" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5. Where do these companies handle their cargo?</span></span>
 <span id="cb11-401"><a href="#cb11-401" aria-hidden="true" tabindex="-1"></a></span>
