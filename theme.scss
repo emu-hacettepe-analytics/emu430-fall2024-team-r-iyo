@@ -110,15 +110,16 @@ body {
   backdrop-filter: blur(6px);
 }
 
-/* SHIMMER TEXT */
+/* SHIMMER TEXT — deeper palette so the gradient stays readable on the pastel hero */
 .shimmer {
-  background: linear-gradient(90deg, #C2185B, #FF2D87, #E5B43C, #00C9D8, #C2185B);
+  background: linear-gradient(90deg, #6A0F3D, #C2185B, #FF2D87, #00838F, #6A0F3D);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 6s linear infinite;
-  font-weight: 700;
+  font-weight: 800;
+  text-shadow: 0 2px 14px rgba(106, 15, 61, 0.18);
 }
 @keyframes shimmer {
   0%   { background-position: 0% 50%; }
